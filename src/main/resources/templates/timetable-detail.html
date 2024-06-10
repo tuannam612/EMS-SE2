@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{_layout_admin}">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Details</title>
+    <link href="https://fonts.googleapis.com/css?family=Inter" rel="stylesheet"/>
+    <link rel="stylesheet" type="text/css" href="/css/profile.css"/>
+    <link rel="stylesheet" type="text/css" href="/css/header-style.css"/>
+    <link rel="stylesheet" type="text/css" href="/css/sidebar.css"/>
+    <link rel="icon" href="/images/logo.png" type="image/x-icon">
+    <!-- <link rel="stylesheet" href="/Student/Students styles/profile.css"> -->
+</head>
+<body>
+<div layout:fragment="content">
+    <div class="profile">
+        <div class="padding"></div>
+        <div class="profile-header">
+            <div class="profile-ID">
+            </div>
+        </div>
+        <div class="profile-des">
+            <div class="profile-des-1">
+                <div class="info-group">
+                    <div class="info-label">Timetable ID:</div>
+                    <input type="text" th:value="${timetable.timetableId}" readonly>
+                </div>
+                <div class="info-group">
+                    <div class="info-label">Course:</div>
+                    <input type="text" th:value="${timetable.course.courseName}" readonly>
+                </div>
+                <div class="info-group">
+                    <div class="info-label">Course Code:</div>
+                    <label>
+                        <input type="text" th:value="${timetable.course.courseCode}" readonly />
+                    </label>
+                </div>
+                <div class="info-group">
+                    <div class="info-label">Classroom:</div>
+                    <input type="text" th:value="${timetable.classroom.roomNumber}" readonly>
+                </div>
+                <div class="info-group">
+                    <div class="info-label">Teacher:</div>
+                    <input type="text" th:field="${timetable.course.teacher.user.userFullname}">
+                </div>
+            </div>
+            <div class="profile-des-2">
+                <div class="info-group">
+                    <div class="info-label">Teaching Day:</div>
+                    <input type="text" th:value="${timetable.teachingDay}" readonly>
+                </div>
+                <div class="info-group">
+                    <div class="info-label">Starting Date:</div>
+                    <input type="text" th:value="${timetable.startDate}" readonly>
+                </div>
+                <div class="info-group">
+                    <div class="info-label">Ending Date:</div>
+                    <input type="text" th:value="${timetable.endDate}" readonly>
+                </div>
+                <div class="info-group">
+                    <div class="info-label">Starting Time:</div>
+                    <input type="text" th:value="${timetable.startTime}" readonly>
+                </div>
+                <div class="info-group">
+                    <div class="info-label">End Time:</div>
+                    <input type="text" th:value="${timetable.endTime}" readonly>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

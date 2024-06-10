@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+
+<head>
+    <link href='https://fonts.googleapis.com/css?family=Inter' rel='stylesheet'>
+    <meta charset="utf-8"/>
+
+</head>
+<body>
+<div class="sidebar-menu" th:fragment="sidebar">
+    <div class="sidebar-info-container">
+        <div class="sidebar-avatar"></div>
+        <div class="sidebar-user-info">
+            <form th:object="${student}">
+                <p id="name" th:text="${student.user.userFullname}"></p>
+                <p id="id" th:text="${student.studentCode}"></p>
+                <p id="role">Student</p>
+            </form>
+        </div>
+
+    </div>
+    <nav class="sidebar-navigation">
+        <a id="home" href="#">HOME</a>
+        <div class="option-container">
+            <img class="arrow" src="/images/right-arrow.png" alt="arrow">
+            <a class="option" href="/student/details">Account Details</a>
+        </div>
+        <div class="option-container">
+            <img class="arrow" src="/images/right-arrow.png" alt="arrow">
+            <a class="option" href="/student/enroll/courses">Register Course</a>
+        </div>
+        <div class="option-container">
+            <img class="arrow" src="/images/right-arrow.png" alt="arrow">
+            <a class="option" href="/student/mark">View Marks</a>
+        </div>
+        <div class="option-container">
+            <img class="arrow" src="/images/right-arrow.png" alt="arrow">
+            <a class="option" href="/student/tuition">View Tuition</a>
+        </div>
+        <div class="option-container">
+            <img class="arrow" src="/images/right-arrow.png" alt="arrow">
+            <a class="option" href="/student/timetableDetails">View Schedule</a>
+
+
+        </div>
+        <div class="option-container">
+            <img class="arrow" src="/images/right-arrow.png" alt="arrow">
+            <a class="option" href="/logout">Logout</a>
+        </div>
+
+    </nav>
+
+</div>
+</body>
+</html>

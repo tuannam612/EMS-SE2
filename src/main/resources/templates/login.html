@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap');
+    @import "//netdna.bootstrapcdn.com/font-awesome/3.0/css/font-awesome.css";
+
+    * {
+        box-sizing: border-box;
+    }
+
+    html {
+        height: 100%;
+    }
+
+
+    body {
+        height: 100%;
+        display: grid;
+        place-items: center;
+        margin: 0;
+        padding: 30px 30px 30px 30px;
+        background: #FA9F42;
+        font-family: "Inter";
+    }
+
+    .rectangle-container {
+        overflow: hidden;
+        position: relative;
+        z-index: 3;
+        width: 100%;
+        margin: 20px;
+        padding: 40px 30px;
+        background: #FCC793;
+        border-radius: 1.25rem;
+        box-shadow: 10px 10px 1px #CA6035;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+    }
+
+    .des-container {
+        text-align: center;
+        width: 300%;
+    }
+    .des {
+        display: flex;
+        justify-content: center;
+        }
+    .des-text {
+        font-size: 20px;
+        font-weight: bold;
+        color: #9A2229;
+        text-align: justify;
+        /* margin-top: 100px;
+        margin-bottom: 100px;
+        margin-right: 100px;
+        margin-left: 100px; */
+        width: 70%;
+    }
+    .login-card {
+        display: flex;
+        flex-direction: column;
+        align-items: center; /* Center items horizontally */
+        justify-content: center; /* Center items vertically */
+        width: 100%;
+        padding: 80px 30px;
+        text-align: center;
+        border-radius: 1.25rem;
+        box-shadow: 10px 10px 1px #D17D67;
+        background: #9A2229;
+        margin-right: 3%;
+    }
+
+    .login-card h2 {
+        color: white;
+        font-size: 60px;
+    }
+
+    .form {
+        margin: 0 0 30px;
+        display: grid;
+        gap: 18px;
+        width: 100%
+    }
+
+    .form>input,
+    .form>button {
+        width: 100%;
+        height: 40px;
+        border-radius: 0.75rem;
+    }
+
+    .form>input {
+        margin: 0 auto;
+        font-family: 'FontAwesome';
+        padding-left: 10px;
+        padding-top: 7px;
+        font-size: 20px;
+        width: 80%;
+    }
+
+    .pass-group>input{
+        width: 80%;
+        height: 40px;
+        border-radius: 0.75rem;
+        margin: 0 auto;
+        font-family: 'FontAwesome';
+        padding-left: 10px;
+        padding-top: 7px;
+        font-size: 20px;
+
+    }
+
+    .form>input:hover {
+        border: 2px solid #000
+    }
+
+    .form>button {
+        width: 50%;
+        margin: 0 auto;
+    }
+
+    .login-butn {
+        font-size: 18px;
+        cursor: pointer;
+        background-color: #FA9F42;
+    }
+    .login-butn:hover {
+        background-color: #9A2229;
+    }
+
+    .forgot-pass>a {
+        color: #fff;
+        text-decoration: none;
+
+        font-size: 18px;
+        text-decoration: underline;
+    }
+
+    .form input::placeholder {
+        font-size: 20px;
+    }
+    .login-image {
+        visibility: visible;
+    }
+    #error-message {
+      color:#F5B006;
+      margin-top: 10px;
+    }
+
+</style>
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+  <title>Login</title>
+  <link rel="icon" href="../images/logo.png" type="image/x-icon">
+</head>
+
+<body>
+
+<div class="rectangle-container">
+
+  <div class="des-container">
+
+    <img src="images/logo.png" width="10%" height="20%" th:src="@{/images/logo.png}"
+         class="login-image"/>
+    <div class="des">
+      <p class="des-text">Hanoi University (HANU; Vietnamese: Trường Đại học Hà Nội) (formerly Hanoi University of
+        Foreign Studies), established in 1959 in Hanoi, is an institution for foreign language training and
+        research.
+
+        Hanoi University offers bachelor's degrees in 10 languages including English, Chinese, Japanese, Korean,
+        Russian, French, German, Spanish, Italian and Portuguese.
+
+        Among these, Masters and PhDs are offered in Russian, English, French and Chinese. Foreign languages
+        offered as second languages are Bulgarian, Hungarian,
+
+        Polish, Czech, Slovak, Romanian and Thai.
+
+        Since 2002, the university has offered Business Bachelor Programs taught in English, in business
+        management, tourism management, international studies, computer science, finance-banking, marketing and
+        accounting.
+      </p>
+    </div>
+  </div>
+  <div class="login-card">
+    <h2>Login</h2>
+    <form method="post" th:action="'/login'" class="form">
+      <input name='username' type="text" placeholder="&#xf007" value="" required>
+      <div class="pass-group">
+        <input name='password' type="password" placeholder="&#xf023" required>
+        <div id="error-message" th:if="${param.error}" >  Incorrect username or password. Please try again.
+        </div>
+
+      </div>
+      <button type="submit" name="submit" class="login-butn" value="Login">Login</button>
+      <div class="forgot-pass">
+        <a href="#">Forgot your password?</a>
+      </div>
+    </form>
+
+  </div>
+
+
+
+</div>
+<script src="/js/login.js"></script>
+
+</body>
+
+</html>

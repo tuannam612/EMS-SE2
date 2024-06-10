@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html
+        lang="en"
+        xmlns:th="http://www.thymeleaf.org"
+        xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+        layout:decorate="~{_layout_teacher}">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Accountant Account Management</title>
+    <link
+            href="https://fonts.googleapis.com/css?family=Inter"
+            rel="stylesheet"
+    />
+    <link rel="stylesheet" type="text/css" href="/css/admin-account-management-style.css"/>
+    <link rel="stylesheet" type="text/css" href="/css/header-style.css"/>
+    <link rel="stylesheet" type="text/css" href="/css/sidebar.css"/>
+    <link rel="icon" href="/images/logo.png" type="image/x-icon">
+</head>
+
+<body>
+<div layout:fragment="content" class="container">
+    <h1>View Courses</h1>
+
+    <!--Admin accounts table-->
+
+    <table class="content-table">
+        <thead>
+        <tr id="table-header">
+            <th>Course Id</th>
+            <th>Course Name</th>
+            <th>Course Code</th>
+            <th>Course Type</th>
+            <th>Credit</th>
+            <th>Semester</th>
+            <th>Major</th>
+            <th>Number of Enrollments</th>
+            <th>Classroom</th>
+            <th>Teaching Day</th>
+            <th>Starting Time</th>
+            <th>Ending Time</th>
+            <th>Actions</th>
+
+        </tr>
+        <tr id="table-searcher">
+            <th>...</th>
+            <th>...</th>
+            <th>...</th>
+            <th>...</th>
+            <th>...</th>
+            <th>...</th>
+            <th>...</th>
+            <th>...</th>
+            <th>...</th>
+            <th>...</th>
+            <th>...</th>
+            <th>...</th>
+            <th>...</th>
+
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="timetable : ${timetables}">
+            <td th:text="${timetable.course.courseId}"></td>
+            <td th:text="${timetable.course.courseName}"></td>
+            <td th:text="${timetable.course.courseCode}"></td>
+            <td th:text="${timetable.course.courseType}"></td>
+            <td th:text="${timetable.course.credit}"></td>
+            <td th:text="'Semester ' + ${timetable.course.semester.semesterNum} +
+      ', Year: ' + ${timetable.course.semester.startYear} + '-' + ${timetable.course.semester.endYear}"></td>
+            <td th:text="${timetable.course.major.majorName}"></td>
+            <td th:text="${timetable.course.enrollmentCount}"></td>
+            <td th:text="${timetable.classroom.roomNumber}"></td>
+            <td th:text="${timetable.teachingDay}"></td>
+            <td th:text="${timetable.startTime}"></td>
+            <td th:text="${timetable.endTime}"></td>
+            <td>
+                <a th:href="'/teacher' + '/courses/'+ ${timetable.course.courseId}">
+                    <input type="image" class="logo-table" th:src="@{/images/menu.png}" alt="menu"/>
+                </a>
+            </td>
+        </tr>
+
+        </tbody>
+    </table>
+</div>
+
+</body>
+</html>

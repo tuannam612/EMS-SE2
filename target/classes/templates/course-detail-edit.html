@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{_layout_admin}">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Details</title>
+    <link href="https://fonts.googleapis.com/css?family=Inter" rel="stylesheet"/>
+    <link rel="stylesheet" type="text/css" href="/css/profile.css"/>
+    <link rel="stylesheet" type="text/css" href="/css/header-style.css"/>
+    <link rel="stylesheet" type="text/css" href="/css/sidebar.css"/>
+    <link rel="icon" href="/images/logo.png" type="image/x-icon">
+    <!-- <link rel="stylesheet" href="/Student/Students styles/profile.css"> -->
+    <script type="text/javascript"
+            th:src="@{/js/courseUpdate.js}"></script>
+    <script type="text/javascript"
+            th:src="@{/js/profile-edit-js.js}"></script>
+</head>
+<body>
+<div layout:fragment="content">
+    <div id="error-popup" class="error-popup">
+        <p id="error-text"> Warning </p>
+        <span id="error-message"></span>
+        <button onclick="closeErrorPopup()">Close</button>
+    </div>
+    <form th:action="@{/admin/saveCourse}"
+          method="post"
+          th:object="${course}">
+        <div class="profile">
+            <div class="padding"></div>
+            <div class="profile-header">
+                <div class="profile-ID">
+                </div>
+            </div>
+            <div class="profile-des">
+                <div class="profile-des-1">
+                    <div class="info-group read-only">
+                        <div class="info-label">ID:</div>
+                        <input type="number" th:field="${course.courseId}" readonly>
+                    </div>
+                    <div class="info-group">
+                        <div class="info-label">Course Name:</div>
+                        <input type="text" th:field="${course.courseName}" required>
+                    </div>
+                    <div class="info-group">
+                        <div class="info-label">Course Code:</div>
+                        <input type="text" th:field="${course.courseCode}" required>
+                    </div>
+                    <div class="info-group">
+                        <div class="info-label">Teacher:</div>
+                        <select th:field="${course.teacher.teacherCode}">
+                            <option th:each="teacher : ${teachers}"
+                                    th:value="${teacher.teacherCode}"
+                                    th:text="${teacher.user.userFullname}">
+                            </option>
+                        </select>
+                    </div>
+                    <div class="info-group">
+                        <div class="info-label">Enrollment Count:</div>
+                        <input type="number" th:field="${course.enrollmentCount}" required>
+                        <!-- Display for visualization, if necessary -->
+
+                        <!-- Error handling -->
+                        <div th:if="${#fields.hasErrors('enrollmentCount')}" th:errors="*{enrollmentCount}"></div>
+                    </div>
+                </div>
+                <div class="profile-des-2">
+                    <div class="info-group">
+                        <div class="info-label">Semester:</div>
+                        <label>
+                            <select th:field="${course.semester.semesterId}">
+                                <option th:each="semester : ${semesters}"
+                                        th:value="${semester.semesterId}"
+                                        th:text="'Semester ' + ${semester.semesterNum} + ', Year: ' + ${semester.startYear} + '-' + ${semester.endYear}">
+                                </option>
+                            </select>
+                        </label>
+                    </div>
+
+                    <div class="info-group">
+                        <div class="info-label">Major:</div>
+                        <select th:field="${course.major}"
+                                th:id="majorSelect">
+                            <option th:each="major : ${majors}" th:value="${major.majorId}"
+                                    th:text="${major.majorName}"
+                                    th:attr="data-special-fee=${major.tuitionSpecializedCourse}, data-basic-fee=${major.tuitionBasedCourse}">
+                            </option>
+                        </select>
+                    </div>
+                    <div class="info-group">
+                        <div class="info-label">Course Type:</div>
+                        <select th:field="${course.courseType}"
+                                th:id="courseType">
+                            <option value="Basic Course">
+                                Basic Course
+                            </option>
+                            <option value="Special Course">
+                                Special Course
+                            </option>
+                        </select>
+                    </div>
+                    <div class="info-group">
+                        <div class="info-label">Credit:</div>
+                        <input type="number" th:field="${course.credit}"
+                               placeholder="e.g., 1,2,3"
+                               th:id="credit" required>
+                        <div th:if="${#fields.hasErrors('credit')}" th:errors="*{credit}"></div>
+                    </div>
+                    <div class="info-group">
+                        <div class="info-label">Fee:</div>
+                        <input type="number"
+                               th:field="${course.fee}"
+                               id="fee"
+                               readonly>
+                        <div th:if="${#fields.hasErrors('fee')}" th:errors="*{fee}"></div>
+                    </div>
+
+                </div>
+            </div>
+            <div id="button-container">
+                <button type="submit">Update</button>
+            </div>
+        </div>
+    </form>
+</div>
+</body>
+</html>

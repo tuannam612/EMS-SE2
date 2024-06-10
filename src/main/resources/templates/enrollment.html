@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en"
+xmlns:th="http://www.thymeleaf.org"
+xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+layout:decorate="~{_layout_student}">
+
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" href="/css/register.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+    <link href="https://fonts.googleapis.com/css?family=Inter" rel="stylesheet" />
+    <link rel="stylesheet" href="/css/header-style.css" />
+    <link rel="stylesheet" href="/css/sidebar.css" />
+    <link rel="icon" href="/images/logo.png" type="image/x-icon">
+    <title>Enrollment</title>
+    <script
+            type="text/javascript"
+            th:src="@{/js/student-enrollment.js}"
+    ></script>
+</head>
+
+<body>
+    <div layout:fragment="content" class="container">
+        <h1>Available Courses for Enrollment</h1>
+        <table>
+            <thead>
+                <tr>
+                    <!-- <th>Course ID</th> -->
+                    <th id="courseName1">Course</th>
+                    <th id="class1">Course Code</th>
+                    <th>Course Type</th>
+                    <th>Credit</th>
+                    <!-- <th id="total">Total</th> -->
+                    <th id="avail">Avail</th>
+                    <th>Semester</th>
+                    <th>Major</th>
+                    <th>Teacher</th>
+                    <th class="schedule">Schedule</th>
+<!--                    <th>Starting Date</th>-->
+<!--                    <th>Ending Date</th>-->
+<!--                    <th>Starting Time</th>-->
+<!--                    <th>Ending Time</th>-->
+                    <th>Actions</th>
+                </tr>
+                <tr>
+                    <th class="row2">
+                        <span style="color: black; cursor: pointer">
+                            <i class="fa-solid fa-magnifying-glass fa-2x"></i>
+                        </span>
+                    </th>
+                    <!-- <th class="row2">...</th> -->
+                    <th class="row2">...</th>
+                    <th class="row2">...</th>
+                    <th class="row2">...</th>
+                    <th class="row2">...</th>
+                    <th class="row2">...</th>
+                    <th class="row2">...</th>
+                    <th class="row2">...</th>
+                    <th class="row2">...</th>
+                    <th class="row2">...</th>
+
+
+
+
+
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="course : ${availableCourses}">
+                    <input hidden th:value="${course.courseId}" id="enrollId">
+                    <form th:action="@{'/student/enroll/courses/' + ${course.courseId} + '/enroll'}" method="post">
+
+                    <!-- <td class="data">
+                        <a th:href="'/admin/courseDetail/' + ${course.courseId}" th:text="${course.courseId}">
+                    </td> -->
+                    <td class="data" th:text="${course.courseName}"></td>
+                    <td class="data" th:text="${course.courseCode}"></td>
+                    <td class="data" th:text="${course.courseType}"></td>
+                    <td class="data" th:text="${course.credit}"></td>
+                    <td class="data" th:text="${course.capacity}"></td>
+                    <!-- <td class="data"></td> -->
+                    <td class="data" th:text="'Semester ' + ${course.semester.semesterNum} +
+          ', Year: ' + ${course.semester.startYear} + '-' + ${course.semester.endYear}"></td>
+                    <td class="data" th:text="${course.major.majorName}"></td>
+                    <td class="data" th:text="${course.teacher.user.userFullname}"></td>
+                    <td class="enrollCourse"></td>
+                    <td>
+                        <button class="enroll-btn" type="submit">Enroll</button>
+                    </td>
+                </form>
+                </tr>
+            
+            </tbody>
+        </table>
+       
+
+        <div th:if="${param.error}">
+            <p th:switch="${param.error}">  
+                <span th:case="'alreadyEnrolled'">You are already enrolled in this course.</span>
+                <span th:case="'courseFull'">This course is already full.</span>
+            </p>
+        </div>
+        <div>
+
+            <!-- error here -->
+            <button class="enroll-btn"><a th:href="@{'/student/enrollments'}">View All Enrollments</a></button>
+        </div>
+    </div>
+</body>
+
+</html>

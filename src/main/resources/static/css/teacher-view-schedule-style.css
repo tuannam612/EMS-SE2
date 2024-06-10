@@ -1,0 +1,95 @@
+body {
+    margin: 0;
+    padding: 0;
+    font-family: "Inter", serif;
+    background-color: #f9f4ee;
+}
+
+.body-container {
+    display: flex;
+}
+
+.main-content-container {
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+}
+
+.container {
+    justify-content: center; /* Horizontally center items */
+    align-items: center; /* Vertically center items */
+    display: flex;
+    flex-direction: column;
+}
+
+h1 {
+    text-align: center;
+}
+
+.options-container {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+
+.option-filter {
+    margin-left: 20px;
+    margin-right: 20px;
+    label {
+        font-size: 20px;
+        font-weight: bold;
+    }
+}
+
+select {
+    height: 37px;
+    width: 300px;
+    font-size: 20px;
+    padding-left: 10px;
+}
+
+#table-container {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+table {
+    margin-top: 20px;
+    width: 90%;
+}
+
+
+table, th, td {
+    border: 1px black solid;
+    border-collapse: collapse;
+
+    .week-number, thead {
+        font-weight: bold;
+        font-size: 20px;
+    }
+
+    thead {
+        background-color: #9A2229;
+        color: white;
+        text-align: center;
+        justify-items: center;
+        td {
+            padding: 10px 0 10px;
+        }
+    }
+
+    tbody {
+        background-color: #F6ECEC;
+    }
+
+    .week-number {
+        color: white;
+        background-color: #9A2229;
+        text-align: center;
+        width: 50px;
+        padding: 10px 15px 10px;
+    }
+}

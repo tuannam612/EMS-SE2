@@ -1,0 +1,63 @@
+.View_Course_Student {
+  background-color: #f9f4ee;
+  display: flex;
+  justify-content: center;
+  font-family: "Inter";
+  align-items: center;
+}
+
+h1 {
+  color: black;
+  margin-left: 380px;
+  font-size: 40px;
+}
+
+.FilterContain {
+  padding: 10px;
+  padding-bottom: 20px;
+  justify-content: space-between;
+  align-items: center;
+  margin-left: 350px;
+}
+
+#CourseFilter {
+  height: 40px;
+  width: 300px;
+  border-radius: 10px;
+  text-align: center;
+  font-weight: bold;
+  font-size: 16px;
+}
+
+table {
+  margin-top: 20px;
+  border-collapse: collapse;
+  width: 100%;
+  border: 1px solid #ddd;
+}
+
+th,
+td {
+  border: 1px solid black;
+  text-align: center;
+  width: 10px;
+}
+
+th {
+  background-color: #9a2229;
+  color: white;
+  text-align: center;
+  padding: 10px 20px 10px;
+}
+
+/*Chỉnh size của cells ở đây*/
+td {
+  padding: 10px 10px 10px;
+  width: 180px;
+  height: 30px;
+  background-color: #f6ecec;
+}
+
+#row_2 {
+  background-color: #c18b8e;
+}

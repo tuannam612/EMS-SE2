@@ -1,0 +1,109 @@
+body {
+  margin: 0;
+  padding: 0;
+  font-family: "Inter", serif;
+  background-color: #f9f4ee;
+}
+
+.body-container {
+  display: flex;
+}
+
+.main-content-container {
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+}
+
+.container {
+  justify-content: center; /* Horizontally center items */
+  align-items: center; /* Vertically center items */
+  display: flex;
+  flex-direction: column;
+}
+
+h1 {
+  color: black;
+  font-size: 40px;
+}
+
+.FilterContain {
+  padding: 10px;
+  padding-bottom: 20px;
+  justify-content: space-between;
+  align-items: center;
+}
+
+#CourseFilter {
+  height: 40px;
+  width: 400px;
+  border-radius: 10px;
+  text-align: center;
+  font-weight: bold;
+  font-size: 20px;
+}
+option {
+  font-weight: bold;
+}
+
+table {
+  margin-top: 20px;
+  border-collapse: collapse;
+  width: 80%;
+  border: 1px solid #ddd;
+}
+
+th,
+td {
+  border: 1px solid black;
+  text-align: center;
+  width: 10px;
+}
+
+th {
+  background-color: #9a2229;
+  color: white;
+  text-align: center;
+  padding: 10px 20px 10px;
+}
+
+/*Chỉnh size của cells ở đây*/
+td {
+  padding: 10px 10px 10px;
+  width: 180px;
+  height: 30px;
+  background-color: #f6ecec;
+}
+
+#row_2 {
+  background-color: #c18b8e;
+  font-size: 20px;
+}
+#index {
+  width: 1%;
+}
+#courseId {
+  width: 10%;
+  font-size: 20px;
+}
+#courseName {
+  width: 20%;
+  font-size: 20px;
+}
+#credits {
+  font-size: 20px;
+  width: 5%;
+}
+#passed {
+  font-size: 20px;
+  width: 5%;
+}
+
+.index_Row{
+    font-size: 20px;
+    font-weight: bold;
+}
+.data{
+    font-size: 20px;
+    font-weight: bold;
+}

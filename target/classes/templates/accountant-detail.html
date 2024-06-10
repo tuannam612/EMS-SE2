@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{_layout_admin}">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Details</title>
+    <link href="https://fonts.googleapis.com/css?family=Inter" rel="stylesheet"/>
+    <link rel="stylesheet" type="text/css" href="/css/profile.css"/>
+    <link rel="stylesheet" type="text/css" href="/css/header-style.css"/>
+    <link rel="stylesheet" type="text/css" href="/css/sidebar.css"/>
+    <link rel="icon" href="/images/logo.png" type="image/x-icon">
+    <!-- <link rel="stylesheet" href="/Student/Students styles/profile.css"> -->
+</head>
+<body>
+<div layout:fragment="content">
+    <div class="profile">
+        <div class="padding"></div>
+        <div class="profile-header">
+            <div class="profile-ID">
+                <h1 th:text="${accountant.user.userFullname}"></h1>
+                <h2 th:text="${accountant.user.role}"></h2>
+            </div>
+        </div>
+        <div class="profile-des">
+            <div class="profile-des-1">
+                <div class="info-group">
+                    <div class="info-label">ID:</div>
+                    <input type="text" th:value="${accountant.user.userID}" readonly>
+                </div>
+                <div class="info-group">
+                    <div class="info-label">accountant Code:</div>
+                    <input type="text" th:value="${accountant.accountantCode}" readonly>
+                </div>
+                <div class="info-group">
+                    <div class="info-label">Username:</div>
+                    <label>
+                        <input type="text" th:value="${accountant.user.username}" readonly />
+                    </label>
+                </div>
+                <div class="info-group">
+                    <div class="info-label">Password:</div>
+                    <input type="text" th:value="${accountant.user.password}" readonly>
+                </div>
+                <div class="info-group">
+                    <div class="info-label">Full Name:</div>
+                    <input type="text" th:field="${accountant.user.userFullname}">
+                </div>
+            </div>
+            <div class="profile-des-2">
+                <div class="info-group">
+                    <div class="info-label">Date of Birth:</div>
+                    <input type="text" th:value="${accountant.user.dateOfBirth}"  readonly>
+                </div>
+                <div class="info-group">
+                    <div class="info-label">Email:</div>
+                    <input type="text" th:value="${accountant.user.email}" readonly>
+                </div>
+                <div class="info-group">
+                    <div class="info-label">Address:</div>
+                    <input type="text" th:value="${accountant.user.address}" readonly>
+                </div>
+                <div class="info-group">
+                    <div class="info-label">Phone Number:</div>
+                    <input type="text" th:value="${accountant.user.phoneNumber}" readonly>
+                </div>
+                <div class="info-group">
+                    <div class="info-label">Gender:</div>
+                    <input type="text" th:value="${accountant.user.gender}" readonly>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

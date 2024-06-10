@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{_layout_teacher}" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Grade Management</title>
+    <link href='https://fonts.googleapis.com/css?family=Inter' rel='stylesheet'>
+    <link rel="stylesheet" href="/css/admin-account-management-style.css">
+    <link rel="stylesheet" href="/css/header-style.css">
+    <link rel="stylesheet" href="/css/sidebar.css">
+    <link rel="icon" href="/images/logo.png" type="image/x-icon">
+    <script type="text/javascript" th:src="@{/js/teacher-grade-management-js.js}"></script>
+</head>
+<body>
+<div layout:fragment="content" class="container">
+    <h1>Grade Management</h1>
+    <h1 th:text="${courses[0].courseName}"></h1>
+    <table class="content-table">
+        <thead>
+        <tr id="table-header">
+            <th>Student Code</th>
+            <th>Student Name</th>
+            <th>Gender</th>
+            <th>D.O.B</th>
+            <th>Email</th>
+            <th>Class</th>
+            <th>Attendance</th>
+            <th>Internal</th>
+            <th>Final Exam</th>
+            <th>Overall</th>
+            <th>Action</th>
+
+        </tr>
+        <tr id="table-searcher">
+            <th>...</th>
+            <th>...</th>
+            <th>...</th>
+            <th>...</th>
+            <th>...</th>
+            <th>...</th>
+            <th>...</th>
+            <th>...</th>
+            <th>...</th>
+            <th>...</th>
+            <th>...</th>
+
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="enrollment : ${enrollments}">
+            <td th:text="${enrollment.student.studentCode}"></td>
+            <td th:text="${enrollment.student.user.userFullname}"></td>
+            <td th:text="${enrollment.student.user.gender}"></td>
+            <td th:text="${enrollment.student.user.dateOfBirth}"></td>
+            <td th:text="${enrollment.student.user.email}"></td>
+            <td th:text="${enrollment.student.classBelong}"></td>
+            <td th:text="${enrollment.attendance}"></td>
+            <td th:text="${enrollment.midtermGrade}"></td>
+            <td th:text="${enrollment.finalGrade}"></td>
+            <td th:text="${enrollment.getTotalGrade()}"></td>
+            <td>
+                <a th:href="'/teacher' + '/courses' + '/students/' + ${enrollment.enrollmentId} ">
+                    <input type="image" class="logo-table" th:src="@{/images/edit.png}" alt="edit"/>
+                </a>
+            </td>
+        </tr>
+
+        </tbody>
+    </table>
+</div>
+</body>
+</html>

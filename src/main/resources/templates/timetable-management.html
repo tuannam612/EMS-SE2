@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html
+        lang="en"
+        xmlns:th="http://www.thymeleaf.org"
+        xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+        layout:decorate="~{_layout_admin}">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Timetable Management</title>
+    <link
+            href="https://fonts.googleapis.com/css?family=Inter"
+            rel="stylesheet"
+    />
+    <link rel="stylesheet" type="text/css" href="/css/admin-account-management-style.css"/>
+    <link rel="stylesheet" type="text/css" href="/css/header-style.css"/>
+    <link rel="stylesheet" type="text/css" href="/css/sidebar.css"/>
+    <link rel="icon" href="/images/logo.png" type="image/x-icon">
+    <script
+            type="text/javascript"
+            th:src="@{/js/admin-account-management-js.js}"
+    ></script>
+</head>
+
+<body>
+<div layout:fragment="content" class="container">
+    <h1>Timetable Information</h1>
+    <div class="controller">
+        <div class="options-container">
+            <button id="add-button">Add Timetable</button>
+            <form th:action="@{/admin/listTimetable}" method="get">
+                <button type="submit" name="showAll">Show All</button>
+            </form>
+        </div>
+        <div id="searcher">
+            <form th:action="@{/admin/listTimetable}" method="get">
+                <input type="text" name="timetableId" placeholder="Search by Timetable ID">
+                <button type="submit">Search</button>
+            </form>
+        </div>
+    </div>
+    <div id="error-popup" class="error-popup">
+        <p id="error-text"> Warning </p>
+        <span id="error-message"></span>
+        <button  onclick="closeErrorPopup()">Close</button>
+    </div>
+
+    <!--Admin modal-->
+    <div id="add-modal" class="modal">
+        <form
+                th:action="@{/admin/insertTimetable}"
+                th:object="${timetable}"
+                method="post"
+                onsubmit="return validateForm()"
+        >
+            <div class="modal-content">
+                <h1>ADD TIMETABLE</h1>
+                <div th:if="${errorMessage}" class="error-message">
+                    <span th:text="${errorMessage}" class="error-text"></span>
+                </div>
+                <div class="table-container">
+                    <table class="info-table">
+                        <tr>
+                            <th>Course:</th>
+                            <td>
+                                <select th:field="*{course.courseId}">
+                                    <option th:each="course : ${courses}"
+                                            th:value="${course.courseId}"
+                                            th:text="${course.courseName} + '-' + ${course.courseCode}">
+                                    </option>
+                                </select>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>Classroom:</th>
+                            <td>
+                                <select th:field="*{classroom.classroomId}">
+                                    <option th:each="classroom : ${classrooms}"
+                                            th:value="${classroom.classroomId}"
+                                            th:text="${classroom.roomNumber}">
+                                    </option>
+                                </select>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>Teaching Day:</th>
+                            <td>
+                                <input type="text" th:field="*{teachingDay}" placeholder="e.g., monday, tuesday, wednesday" class="add-input">
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>Starting Date:</th>
+                            <td>
+                                <input type="date" th:field="*{startDate}" class="add-input">
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>Ending Date:</th>
+                            <td>
+                                <input type="date" th:field="*{endDate}" class="add-input">
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>Starting Time:</th>
+                            <td>
+                                <input type="time" th:field="*{startTime}" class="add-input">
+                            </td>
+                        </tr> <tr>
+                        <th>Ending Time:</th>
+                        <td>
+                            <input type="time" th:field="*{endTime}" class="add-input">
+                        </td>
+                    </tr>
+                    </table>
+                </div>
+                <div th:if="${errorMessage}" class="error-message">
+                    <span th:text="${errorMessage}" class="error-text"></span>
+                </div>
+                <div class="grade-options-container">
+                    <button type="submit" class="confirm-field">Confirm</button>
+                    <button type="reset" id="cancel-add" class="close-field">Cancel</button>
+                </div>
+            </div>
+        </form>
+    </div>
+
+    <!--Admin accounts table-->
+
+    <table class="content-table">
+        <thead>
+        <tr id="table-header">
+            <th>Id</th>
+            <th>Course</th>
+            <th>Course Code</th>
+            <th>Classroom</th>
+            <th>Teacher</th>
+            <th>Schedule</th>
+            <th>Capacity</th>
+            <th colspan="3" style="width: 10%; height: 20px">Option</th>
+        </tr>
+        <tr id="table-searcher">
+            <th>...</th>
+            <th>...</th>
+            <th>...</th>
+            <th>...</th>
+            <th>...</th>
+            <th>...</th>
+            <th>...</th>
+
+            <th></th>
+            <th></th>
+            <th></th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="timetable : ${timetables}">
+            <td th:text="${timetable.timetableId}"></td>
+            <td th:text="${timetable.course.courseName}"></td>
+            <td th:text="${timetable.course.courseCode}"></td>
+            <td th:text="${timetable.classroom.roomNumber}"></td>
+            <td th:text="${timetable.course.teacher.user.userFullname}"></td>
+            <td th:text="${timetable.teachingDay} +' ('+${timetable.startDate}+ ' -> '+${timetable.endDate}+') ('+${timetable.startTime}+' -> '+${timetable.endTime}+')' "/>
+            <td th:text="${timetable.course.capacity}"></td>
+            <td class="utility-column">
+                <div class="logo-table-container">
+                    <a th:href="'/admin/updateTimetable/' + ${timetable.timetableId}">
+                        <input type="image" class="logo-table" alt="edit" th:src="@{../images/edit.png}"/>
+                    </a>
+                </div>
+            </td>
+            <td class="utility-column">
+                <div class="logo-table-container">
+                    <a th:href="'/admin/timetableDetail/' + ${timetable.timetableId}">
+                        <input type="image" class="logo-table" th:src="@{../images/menu.png}" alt="menu"/>
+                    </a>
+                </div>
+            </td>
+            <td class="utility-column">
+                <div class="logo-table-container">
+                    <a th:href="'/admin/deleteTimetable/' + ${timetable.timetableId}">
+                        <input type="image" class="logo-table" th:src="@{../images/delete.png}" alt="delete"/>
+                    </a>
+                </div>
+            </td>
+        </tr>
+        </tbody>
+
+    </table>
+</div>
+
+</body>
+</html>

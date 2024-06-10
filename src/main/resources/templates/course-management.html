@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html
+        lang="en"
+        xmlns:th="http://www.thymeleaf.org"
+        xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+        layout:decorate="~{_layout_admin}">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Course Management</title>
+    <link
+            href="https://fonts.googleapis.com/css?family=Inter"
+            rel="stylesheet"
+    />
+    <link rel="stylesheet" type="text/css" href="/css/admin-account-management-style.css"/>
+    <link rel="stylesheet" type="text/css" href="/css/header-style.css"/>
+    <link rel="stylesheet" type="text/css" href="/css/sidebar.css"/>
+    <link rel="icon" href="/images/logo.png" type="image/x-icon">
+    <script
+            type="text/javascript"
+            th:src="@{/js/admin-account-management-js.js}"
+    ></script>
+    <script type="text/javascript"
+    th:src="@{/js/courseAdd.js}"></script>
+</head>
+
+<body>
+<div layout:fragment="content" class="container">
+    <h1>Course Information</h1>
+    <div class="controller">
+        <div class="options-container">
+            <button id="add-button">Add Course</button>
+            <form th:action="@{/admin/listCourse}" method="get">
+                <button type="submit" name="showAll">Show All</button>
+            </form>
+        </div>
+        <div id="searcher">
+            <form th:action="@{/admin/listCourse}" method="get">
+                <input type="text" name="courseId" placeholder="Search by Course ID">
+                <button type="submit">Search</button>
+            </form>
+        </div>
+    </div>
+    <div id="error-popup" class="error-popup">
+        <p id="error-text"> Warning </p>
+        <span id="error-message"></span>
+        <button  onclick="closeErrorPopup()">Close</button>
+    </div>
+
+    <!--Admin modal-->
+    <div id="add-modal" class="modal">
+        <form
+                th:action="@{/admin/insertCourse}"
+                th:object="${course}"
+                method="post"
+                onsubmit="return validateForm()"
+        >
+            <div class="modal-content">
+                <h1>ADD COURSE</h1>
+                <div class="table-container">
+                    <table class="info-table">
+                        <tr>
+                            <th>Semester:</th>
+                            <td>
+                                <select th:field="*{semester.semesterId}">
+                                    <option th:each="semester : ${semesters}"
+                                            th:value="${semester.semesterId}"
+                                            th:text="'Semester ' + ${semester.semesterNum} + ', Year: ' + ${semester.startYear} + '-' + ${semester.endYear}">
+                                    </option>
+                                </select>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>Major:</th>
+                            <td>
+                                <select th:field="*{major}"
+                                        th:id="majorSelect">
+                                    <option th:each="major : ${majors}" th:value="${major.majorId}"
+                                            th:text="${major.majorName}"
+                                            th:attr="data-special-fee=${major.tuitionSpecializedCourse}, data-basic-fee=${major.tuitionBasedCourse}"></option>
+                                </select>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>Course Name:</th>
+                            <td>
+                                <input type="text" th:field="*{courseName}" placeholder="e.g., se1, se2, hci, pit" class="add-input">
+                                <div th:if="${#fields.hasErrors('courseName')}" th:errors="*{courseName}"></div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>Course Code:</th>
+                            <td>
+                                <input type="text" th:field="*{courseCode}"
+                                       placeholder="e.g., lect, lect01, tut, tut01" class="add-input">
+                                <div th:if="${#fields.hasErrors('courseCode')}" th:errors="*{courseCode}"></div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>Course Type:</th>
+                            <td>
+                                <select th:field="*{courseType}"
+                                        th:id="courseType">
+                                    <option value="Select Course Type">
+                                        Select Course Type
+                                    </option>
+                                    <option value="Basic Course">
+                                        Basic Course
+                                    </option>
+                                    <option value="Special Course">
+                                        Special Course
+                                    </option>
+                                </select>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>Credit:</th>
+                            <td>
+                                <input type="number" th:field="*{credit}"
+                                       placeholder="e.g., 1,2,3"
+                                       th:id="credit" class="add-input">
+                                <div th:if="${#fields.hasErrors('credit')}" th:errors="*{credit}"></div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>Fee:</th>
+                            <td>
+                                <input type="number"
+                                       th:field="*{fee}"
+                                       id="fee"
+                                       class="add-input">
+                                <div th:if="${#fields.hasErrors('fee')}" th:errors="*{fee}"></div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>Teacher:</th>
+                            <td>
+                                <select th:field="*{teacher.teacherCode}">
+                                    <option th:each="teacher : ${teachers}"
+                                            th:value="${teacher.teacherCode}"
+                                            th:text="${teacher.user.userFullname}">
+                                    </option>
+                                </select>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>Capacity:</th>
+                            <td>
+                                <input type="number" th:field="*{capacity}"
+                                       th:id="capacity" class="add-input">
+                                <div th:if="${#fields.hasErrors('credit')}" th:errors="*{credit}"></div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>Enrollment Count:</th>
+                            <td>
+                                <input type="hidden" th:field="*{enrollmentCount}" th:value="0">
+                                <!-- Display for visualization, if necessary -->
+                                <span>0</span>
+                                <!-- Error handling -->
+                                <div th:if="${#fields.hasErrors('enrollmentCount')}" th:errors="*{enrollmentCount}"></div>
+                            </td>
+                        </tr>
+
+
+                    </table>
+                </div>
+                <div th:if="${errorMessage}" class="error-message">
+                    <span th:text="${errorMessage}" class="error-text"></span>
+                </div>
+                <div class="grade-options-container">
+                    <button type="submit" class="confirm-field">Confirm</button>
+                    <button type="reset" id="cancel-add" class="close-field">Cancel</button>
+                </div>
+            </div>
+        </form>
+    </div>
+
+    <!--Admin accounts table-->
+
+    <table class="content-table">
+        <thead>
+        <tr id="table-header">
+            <th></th>
+            <th>Course Id</th>
+            <th>Course Name</th>
+            <th>Course Code</th>
+            <th>Course Type</th>
+            <th>Credit</th>
+            <th>Semester</th>
+            <th>Major</th>
+            <th>Teacher</th>
+            <th>Fee</th>
+            <th colspan="3" style="width: 10%; height: 20px">Option</th>
+        </tr>
+        <tr id="table-searcher">
+            <th class="utility-column">
+                <div class="logo-table-container">
+                    <input
+                            id="modalOpener"
+                            type="image"
+                            class="logo-table"
+                            src="/images/search.png"
+                            alt="search"
+                    />
+                </div>
+            </th>
+            <th>...</th>
+            <th>...</th>
+            <th>...</th>
+            <th>...</th>
+            <th>...</th>
+            <th>...</th>
+            <th>...</th>
+            <th>...</th>
+            <th>...</th>
+
+            <th></th>
+            <th></th>
+            <th></th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="course : ${courses}">
+            <td class="checkbox-container">
+                <label>
+                    <input type="checkbox" class="checkbox"/>
+                </label>
+            </td>
+            <td th:text="${course.courseId}">
+            </td>
+            <td th:text="${course.courseName}"></td>
+            <td th:text="${course.courseCode}"></td>
+            <td th:text="${course.courseType}"></td>
+            <td th:text="${course.credit}"></td>
+            <td th:text="'Semester ' + ${course.semester.semesterNum} +
+      ' Year ' + ${course.semester.startYear} + '-' + ${course.semester.endYear}"></td>
+            <td th:text="${course.major.majorName}"></td>
+            <td th:text="${course.teacher.user.userFullname}"></td>
+            <td th:text="'$'+ ${course.fee}"></td>
+            <td class="utility-column">
+                <div class="logo-table-container">
+                    <a th:href="'/admin/updateCourse/' + ${course.courseId}">
+                        <input type="image" class="logo-table" alt="edit" th:src="@{../images/edit.png}"/>
+                    </a>
+                </div>
+            </td>
+            <td class="utility-column">
+                <div class="logo-table-container">
+                    <a th:href="'/admin/courseDetail/' + ${course.courseId}">
+                        <input type="image" class="logo-table" th:src="@{../images/menu.png}" alt="menu"/>
+                    </a>
+                </div>
+            </td>
+            <td class="utility-column">
+                <div class="logo-table-container">
+                    <a th:href="'/admin/deleteCourse/' + ${course.courseId}">
+                        <input type="image" class="logo-table" th:src="@{../images/delete.png}" alt="delete"/>
+                    </a>
+                </div>
+            </td>
+        </tr>
+        </tbody>
+
+    </table>
+</div>
+
+</body>
+</html>

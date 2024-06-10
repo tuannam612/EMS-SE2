@@ -1,0 +1,67 @@
+    .crud-course-admin {
+      background-color: #f9f4ee;
+      display: flex;
+      justify-content: center;
+      font-family: "Inter";
+      align-items: center;
+    }
+    h1 {
+      color: black;
+      font-size: 40px;
+      margin-left: 300px;
+    }
+
+    table {
+      margin-top: 20px;
+      border-collapse: collapse;
+      width: 100%;
+      border: 1px solid #ddd;
+    }
+
+    th,
+    td {
+      border: 1px solid black;
+      text-align: center;
+      width: 10px;
+    }
+
+    th {
+      background-color: #9a2229;
+      color: white;
+      text-align: center;
+      padding: 10px 20px 10px;
+    }
+    td {
+      padding: 10px 10px 10px;
+      width: 120px;
+      height: 30px;
+      background-color: #f6ecec;
+    }
+    .course-option-container {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      align-items: center;
+      button {
+        padding: 5px 20px 5px;
+        font-size: 20px;
+        border-radius: 6px;
+        margin-bottom: 10px;
+        background-color: #fa9f42;
+        font-weight: 600;
+        cursor: pointer;
+        width: 300px;
+        height: 50px;
+      }
+      #button-1 {
+        border-width: 2px;
+        margin-left: 150px;
+      }
+      #button-2 {
+        border-width: 2px;
+        margin-right: 150px;
+      }
+    }
+    .row_2 {
+      background-color: #c18b8e;
+    }

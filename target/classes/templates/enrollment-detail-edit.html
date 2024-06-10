@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{_layout_admin}">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Details</title>
+    <link href="https://fonts.googleapis.com/css?family=Inter" rel="stylesheet"/>
+    <link rel="stylesheet" type="text/css" href="/css/profile.css"/>
+    <link rel="stylesheet" type="text/css" href="/css/header-style.css"/>
+    <link rel="stylesheet" type="text/css" href="/css/sidebar.css"/>
+    <link rel="icon" href="/images/logo.png" type="image/x-icon">
+    <!-- <link rel="stylesheet" href="/Student/Students styles/profile.css"> -->
+    <script type="text/javascript"
+            th:src="@{/js/courseUpdate.js}"></script>
+    <script
+            type="text/javascript"
+            th:src="@{/js/admin-account-management-js.js}"
+    ></script>
+    <script
+            type="text/javascript"
+            th:src="@{/js/enrollment-management-js.js}" defer
+    ></script>
+    <script
+            type="text/javascript"
+            th:src="@{/js/check-capacity-js.js}" defer
+    ></script>
+</head>
+<body>
+<div layout:fragment="content">
+    <form th:action="@{/admin/saveEnrollment}" method="post" th:object="${enrollment}">
+        <div class="profile">
+            <div class="padding"></div>
+            <div class="profile-header">
+                <div class="profile-ID">
+                </div>
+            </div>
+            <div class="profile-des">
+                <div class="profile-des-1">
+                    <div class="info-group read-only">
+                        <div class="info-label">ID:</div>
+                        <input type="number" th:field="${enrollment.enrollmentId}" readonly>
+                    </div>
+                    <div class="info-group">
+                        <div class="info-label">Semester:</div>
+                        <label>
+                            <select id="semesterSelect" th:field="${enrollment.semester.semesterId}">
+                                <option value="">Select Semester</option>
+                                <option th:each="semester : ${semesters}"
+                                        th:value="${semester.semesterId}"
+                                        th:text="'Semester ' + ${semester.semesterNum} + ', Year: ' + ${semester.startYear} + '-' + ${semester.endYear}">
+                                </option>
+                            </select>
+                        </label>
+                    </div>
+                    <div class="info-group">
+                        <div class="info-label">Course:</div>
+                        <label>
+                            <select th:id="courseSelect" th:field="${enrollment.course.courseId}" name="courseId">
+                                <option th:each="course : ${courses}"
+                                        th:value="${course.courseId}"
+                                        th:text="${course.courseName} + ' - ' + ${course.courseCode}">
+                                </option>
+                                <!-- Courses will be dynamically populated here -->
+
+                            </select>
+                        </label>
+                    </div>
+                    <div class="info-group">
+                        <div class="info-label">Student:</div>
+                        <label>
+                            <select th:field="${enrollment.student.studentCode}">
+                                <option value="">Select Student</option>
+                                <option th:each="student : ${students}"
+                                        th:value="${student.studentCode}"
+                                        th:text="'Code: ' + ${student.studentCode} + ', Name: ' + ${student.user.userFullname} + ', Class: ' + ${student.classBelong}">
+                                </option>
+                            </select>
+                        </label>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <div id="button-container">
+            <button th:id="confirm-button" type="submit" class="confirm-field">Update</button>
+        </div>
+    </form>
+</div>
+</form>
+</div>
+</body>
+</html>

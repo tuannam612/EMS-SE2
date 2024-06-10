@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{_layout_admin}">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Details</title>
+    <link href="https://fonts.googleapis.com/css?family=Inter" rel="stylesheet"/>
+    <link rel="stylesheet" type="text/css" href="/css/profile.css"/>
+    <link rel="stylesheet" type="text/css" href="/css/header-style.css"/>
+    <link rel="stylesheet" type="text/css" href="/css/sidebar.css"/>
+    <link rel="icon" href="/images/logo.png" type="image/x-icon">
+    <!-- <link rel="stylesheet" href="/Student/Students styles/profile.css"> -->
+</head>
+<body>
+<div layout:fragment="content">
+    <div class="profile">
+        <div class="padding"></div>
+        <div class="profile-header">
+            <div class="profile-ID">
+            </div>
+        </div>
+        <div class="profile-des">
+            <div class="profile-des-1">
+                <div class="info-group">
+                    <div class="info-label">Enrollment ID:</div>
+                    <input type="text" th:value="${enrollment.enrollmentId}" readonly>
+                </div>
+                <div class="info-group">
+                    <div class="info-label">Semester:</div>
+                    <input type="text" th:value="'Semester ' + ${enrollment.semester.semesterNum} +
+      ', Year ' + ${enrollment.semester.startYear} + '-' + ${enrollment.semester.endYear}" readonly>
+                </div>
+                <div class="info-group">
+                    <div class="info-label">Student Code:</div>
+                    <input type="text" th:value="${enrollment.student.studentCode}" readonly>
+                </div>
+                <div class="info-group">
+                    <div class="info-label">Course Name:</div>
+                    <input type="text" th:value="${enrollment.course.courseName}" readonly>
+                </div>
+                <div class="info-group">
+                    <div class="info-label">Course Code:</div>
+                    <input type="text" th:value="${enrollment.course.courseCode}" readonly>
+                </div>
+            </div>
+            <div class="profile-des-2">
+                <div class="info-group">
+                    <div class="info-label">Credit:</div>
+                    <input type="text" th:value="${enrollment.course.credit}" readonly>
+                </div>
+                <div class="info-group">
+                    <div class="info-label">Major:</div>
+                    <input type="text" th:value="${enrollment.course.major.majorName}" readonly>
+                </div>
+                <div class="info-group">
+                    <div class="info-label">Timetable:</div>
+                    <span type="text" th:text="${timetable.teachingDay} + ', from ' + ${timetable.startTime} +
+' to ' + ${timetable.endTime} + ', room ' + ${timetable.classroom.roomNumber} + ', Teacher ' + ${timetable.course.teacher.teacherCode} + ', '+ ${timetable.startDate} + ' to ' + ${timetable.endDate}"
+                           readonly>
+                      </span>
+                </div>
+            </div>
+
+
+        </div>
+    </div>
+</div>
+</div>
+</body>
+</html>

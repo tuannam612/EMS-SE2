@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{_layout_student}" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile</title>
+    <link rel="stylesheet" href="../css/header-style.css">
+    <link rel="stylesheet" href="../css/sidebar.css">
+    <link rel="stylesheet" href='https://fonts.googleapis.com/css?family=Inter'>
+    <link rel="stylesheet" href="../css/profile.css">
+    <link rel="icon" href="../images/logo.png" type="image/x-icon">
+
+    <!-- <link rel="stylesheet" href="/Student/Students styles/profile.css"> -->
+</head>
+
+<body>
+<div layout:fragment="content">
+    <div class="profile">
+        <div class="profile-header">
+            <div class="profile-ID">
+                <form th:object="${student}">
+                    <h1 id="name" th:text="${student.user.userFullname}"></h1>
+                </form>
+
+            </div>
+        </div>
+    </div>
+    <form th:object="${student}">
+        <div class="profile-des">
+            <div class="profile-des-1">
+                <div class="info-group">
+                    <div class="info-label">ID:</div>
+                    <label>
+                        <input type="text" th:value="${student.user.userID}" readonly>
+                    </label>
+                </div>
+                <div class="info-group">
+                    <div class="info-label">Student Code:</div>
+                    <label>
+                        <input type="text" th:value="${student.studentCode}" readonly>
+                    </label>
+                </div>
+                <div class="info-group">
+                    <div class="info-label">Username:</div>
+                    <label>
+                        <input type="text" th:value="${student.user.username}" readonly/>
+                    </label>
+                </div>
+                <div class="info-group">
+                    <div class="info-label">Full Name:</div>
+                    <label>
+                        <input type="text" th:field="${student.user.userFullname}" readonly>
+                    </label>
+                </div>
+                <div class="info-group">
+                    <div class="info-label">Date of Birth:</div>
+                    <label>
+                        <input type="text" th:value="${student.user.dateOfBirth}" readonly>
+                    </label>
+                </div>
+                <div class="info-group">
+                    <div class="info-label">Email:</div>
+                    <label>
+                        <input type="text" th:value="${student.user.email}" readonly>
+                    </label>
+                </div>
+            </div>
+            <div class="profile-des-2">
+                <div class="info-group">
+                    <div class="info-label">Address:</div>
+                    <label>
+                        <input type="text" th:value="${student.user.address}" readonly>
+                    </label>
+                </div>
+                <div class="info-group">
+                    <div class="info-label">Phone Number:</div>
+                    <label>
+                        <input type="text" th:value="${student.user.phoneNumber}" readonly>
+                    </label>
+                </div>
+                <div class="info-group">
+                    <div class="info-label">Gender:</div>
+                    <label>
+                        <input type="text" th:value="${student.user.gender}" readonly>
+                    </label>
+                </div>
+                <div class="info-group">
+                    <div class="info-label">Class:</div>
+                    <label>
+                        <input type="text" th:value="${student.classBelong}" readonly>
+                    </label>
+                </div>
+                <div class="info-group">
+                    <div class="info-label">Training System:</div>
+                    <label>
+                        <input type="text" th:value="${student.trainingSystem}" readonly>
+                    </label>
+                </div>
+                <div class="info-group">
+                    <div class="info-label">Major:</div>
+                    <label>
+                        <input type="text" th:value="${student.major.majorName}" readonly>
+                    </label>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+</body>
+</html>

@@ -1,0 +1,113 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap');
+@import "//netdna.bootstrapcdn.com/font-awesome/3.0/css/font-awesome.css";
+
+     * {
+        box-sizing: border-box;
+    }
+
+    html {
+        height: 100%;
+    }
+
+    body {
+        height: 100%;
+        display: grid;
+        place-items: center;
+        margin: 0;
+        padding: 30px 30px 30px 30px;
+        background: #FA9F42;
+        font-family: "Inter";
+    }
+
+    .rectangle-container {
+        overflow: hidden;
+        position: relative;
+        z-index: 3;
+        width: 100%;
+        margin: 20px;
+        padding: 40px 30px;
+        background: #FCC793;
+        border-radius: 1.25rem;
+        box-shadow: 10px 10px 1px #CA6035;
+        display: flex;
+        /* Change to flex to make children flex items */
+        flex-direction: row;
+        /* Default is row, but just to be explicit */
+        justify-content: space-between;
+    }
+
+    .des-container {
+        text-align: center;
+        /* padding-right: 100px; */
+    }
+
+    .login-card {
+        overflow: hidden;
+        position: relative;
+        z-index: 3;
+        width: 75%;
+        margin: 20px;
+        margin-left: 100px;
+        padding: 80px 30px;
+        text-align: center;
+        border-radius: 1.25rem;
+        box-shadow: 10px 10px 1px #D17D67;
+        background: #9A2229;
+
+    }
+
+    .login-card h2 {
+        color: white;
+        font-size: 40px;
+    }
+
+    .form {
+        margin: 0 0 30px;
+        display: grid;
+        gap: 18px;
+
+    }
+
+    .form>input,
+    .form>button {
+        width: 100%;
+        height: 40px;
+        border-radius: 0.75rem;
+    }
+
+    .form>input {
+        margin: 0 auto;
+        font-family: 'FontAwesome';
+    }
+
+    .pass-group>input{
+        width: 100%;
+        height: 40px;
+        border-radius: 0.75rem;
+        margin: 0 auto;
+        font-family: 'FontAwesome';
+    }
+
+    .form>input:hover {
+        border: 2px solid #000
+    }
+
+    .form>button {
+        width: 50%;
+        margin: 0 auto;
+    }
+
+    .login-butn {
+        font-size: 18px;
+    }
+
+    .forgot-pass>a {
+        color: #fff;
+        text-decoration: none;
+        padding-left: 50%;
+        font-size: 14px;
+    }
+
+    .form input::placeholder {
+        font-size: 20px;
+    }

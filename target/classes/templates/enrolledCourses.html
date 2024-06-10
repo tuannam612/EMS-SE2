@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en"
+xmlns:th="http://www.thymeleaf.org"
+xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+layout:decorate="~{_layout_student}">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" href="/css/register.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+    <link href="https://fonts.googleapis.com/css?family=Inter" rel="stylesheet" />
+    <link rel="stylesheet" href="/css/sidebar.css" />
+    <link rel="stylesheet" href="/css/header-style.css" />
+    <link rel="icon" href="/images/logo.png" type="image/x-icon">
+    <title>Enrollment List</title>
+</head>
+<body>
+<div layout:fragment="content" class="container">
+<h1>Enrolled courses</h1>
+    <table>
+        <div class="list-head">
+            <h2 style=" margin-left: 20px;">
+                List of Enrolled courses:
+            </h2>
+            
+
+        </div>
+        <thead>
+
+            <tr>
+                <!-- <th id="delete">Delete</th> -->
+                <!-- <th id="index"></th> -->
+                <!-- <th>Course Id</th> -->
+                <th id="courseName1">Course Name</th>
+                <th id="class1">Course Code</th>
+                <th>Course Type</th>
+                <th id="creNum">Credit</th>
+                <th>Semester</th>
+                <th>Major</th>
+                <th>Teacher</th>
+
+<!--                <th>Attendance</th>-->
+<!--                <th>Midterm</th>-->
+<!--                <th>Final Exam</th>-->
+<!--                <th>Final Grade</th>-->
+                <th>Actions</th>
+                <!-- <th id="regDate">Register Date</th> -->
+
+            </tr>
+
+        </thead>
+        <tbody>
+            <tr th:each="enrollment : ${enrollments}">
+                <!-- <th style="width: 5%; height: 20px; background-color: #f6ecec">
+                    <span style="color: black; cursor: pointer">
+                        <i class="fa-solid fa-x"></i>
+                    </span>
+                </th> -->
+                <!-- <td>
+                    <a th:href="'/admin/courseDetail/' + ${enrollment.course.courseId}" th:text="${enrollment.course.courseId}"/>
+                </td> -->
+                <td class="data" th:text="${enrollment.course.courseName}"></td>
+                <td class="data" th:text="${enrollment.course.courseCode}"></td>
+                <td class="data" th:text="${enrollment.course.courseType}"></td>
+                <td class="data" th:text="${enrollment.course.credit}"></td>
+                <td class="data" th:text="'Semester ' + ${enrollment.course.semester.semesterNum} +
+  ', Year: ' + ${enrollment.course.semester.startYear} + '-' + ${enrollment.course.semester.endYear}"></td>
+                <td class="data" th:text="${enrollment.course.major.majorName}"></td>
+                <td class="data" th:text="${enrollment.course.teacher.user.userFullname}"></td>
+<!--                <td class="data" th:text="${enrollment.course.timetable.teachingDay}"></td>-->
+<!--                <td class="data" th:text="${enrollment.course.timetable.startDate}"></td>-->
+<!--                <td class="data" th:text="${enrollment.course.timetable.endDate}"></td>-->
+<!--                <td class="data" th:text="${enrollment.course.timetable.startTime}"></td>-->
+<!--                <td class="data" th:text="${enrollment.course.timetable.endTime}"></td>-->
+<!--                <td th:text="${enrollment.attendance}"></td>-->
+<!--                <td th:text="${enrollment.midtermGrade}"></td>-->
+<!--                <td th:text="${enrollment.finalGrade}"></td>-->
+<!--                <td th:text="${enrollment.totalGrade}"></td>-->
+                <td>
+                    <button class="enroll-btn" ><a th:href="'/student/enroll/deleteEnrollment/' + ${enrollment.enrollmentId}">DELETE</a></button>
+                </td>
+
+
+            </tr>
+
+        </tbody>
+
+    </table>
+    <div>
+        <button class="enroll-btn" ><a href="/student/enroll/courses">Go to enroll courses</a></button>
+    </div>
+ 
+</div>
+
+</body>
+</html>

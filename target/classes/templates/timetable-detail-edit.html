@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{_layout_admin}">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Details</title>
+    <link href="https://fonts.googleapis.com/css?family=Inter" rel="stylesheet"/>
+    <link rel="stylesheet" type="text/css" href="/css/profile.css"/>
+    <link rel="stylesheet" type="text/css" href="/css/header-style.css"/>
+    <link rel="stylesheet" type="text/css" href="/css/sidebar.css"/>
+    <link rel="icon" href="/images/logo.png" type="image/x-icon">
+    <!-- <link rel="stylesheet" href="/Student/Students styles/profile.css"> -->
+</head>
+<body>
+<div layout:fragment="content">
+    <form th:action="@{/admin/saveTimetable}" method="post" th:object="${timetable}">
+        <div class="profile">
+            <div class="padding"></div>
+            <div class="profile-header">
+                <div class="profile-ID">
+                </div>
+            </div>
+            <div class="profile-des">
+                <div class="profile-des-1">
+                    <div class="info-group read-only">
+                        <div class="info-label">Timetable ID:</div>
+                        <input type="number" th:field="${timetable.timetableId}" readonly>
+                    </div>
+                    <div class="info-group read-only">
+                        <input type="number" hidden th:field="${timetable.course.courseId}">
+                    </div>
+                    <div class="info-group read-only">
+                        <div class="info-label">Course:</div>
+                        <input type="text" th:value="${timetable.course.courseName}" readonly>
+                    </div>
+                    <div class="info-group read-only">
+                        <div class="info-label">Course Code:</div>
+                        <input type="text" th:value="${timetable.course.courseCode}" readonly>
+                    </div>
+                    <div class="info-group read-only">
+                        <div class="info-label">Teacher:</div>
+                        <input type="text" th:value="${timetable.course.teacher.user.userFullname}" readonly>
+                    </div>
+                    <div class="info-group">
+                        <div class="info-label">Classroom:</div>
+                        <label>
+                            <select th:field="${timetable.classroom.classroomId}">
+                                <option th:each="classroom : ${classrooms}"
+                                        th:value="${classroom.classroomId}"
+                                        th:text="${classroom.roomNumber}">
+                                </option>
+                            </select>
+                        </label>
+                    </div>
+
+                </div>
+                <div class="profile-des-2">
+                    <div class="info-group">
+                        <div class="info-label">Teaching Day:</div>
+                        <input type="text" th:field="${timetable.teachingDay}" required>
+                    </div>
+                    <div class="info-group">
+                        <div class="info-label">Starting Date:</div>
+                        <input type="date" th:field="${timetable.startDate}" required>
+                    </div>
+                    <div class="info-group">
+                        <div class="info-label">Ending Date:</div>
+                        <input type="text" th:field="${timetable.endDate}" required>
+                    </div>
+                    <div class="info-group">
+                        <div class="info-label">Starting Time:</div>
+                        <input type="time" th:field="${timetable.startTime}" required>
+                    </div>
+                    <div class="info-group">
+                        <div class="info-label">Ending Time:</div>
+                        <input type="time" th:field="${timetable.endTime}" required>
+                    </div>
+                </div>
+            </div>
+            <div id="button-container">
+                <button type="submit">Update</button>
+            </div>
+        </div>
+    </form>
+</div>
+</body>
+</html>

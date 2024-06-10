@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+
+<head>
+    <link href='https://fonts.googleapis.com/css?family=Inter' rel='stylesheet'>
+    <meta charset="utf-8"/>
+
+</head>
+<body>
+<div class="sidebar-menu" th:fragment="sidebar">
+    <div class="sidebar-info-container">
+        <div class="sidebar-avatar"></div>
+        <div class="sidebar-user-info">
+            <form th:object="${teacher}">
+                <p id="name" th:text="${teacher.user.userFullname}"></p>
+                <p id="id" th:text="${teacher.teacherCode}"></p>
+                <p id="role">Teacher</p>
+            </form>
+        </div>
+
+    </div>
+    <nav class="sidebar-navigation">
+
+        <a id="home" href="#">HOME</a>
+        <div class="option-container">
+            <img class="arrow" src="/images/right-arrow.png" alt="arrow">
+            <a class="option" href="/teacher/details">Account Details</a>
+        </div>
+        <div class="option-container">
+            <img class="arrow" src="/images/right-arrow.png" alt="arrow">
+            <a class="option" href="/teacher/timetableDetails">View Schedule</a>
+        </div>
+        <div class="option-container">
+            <img class="arrow" src="/images/right-arrow.png" alt="arrow">
+            <a class="option" href="/teacher/courses">Grade Management</a>
+        </div>
+        <div class="option-container">
+            <img class="arrow" src="/images/right-arrow.png" alt="arrow">
+            <a class="option" href="/logout">Logout</a>
+        </div>
+
+    </nav>
+
+</div>
+</body>
+</html>

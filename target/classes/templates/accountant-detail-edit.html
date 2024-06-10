@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{_layout_admin}">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Details</title>
+    <link href="https://fonts.googleapis.com/css?family=Inter" rel="stylesheet"/>
+    <link rel="stylesheet" type="text/css" href="/css/profile.css"/>
+    <link rel="stylesheet" type="text/css" href="/css/header-style.css"/>
+    <link rel="stylesheet" type="text/css" href="/css/sidebar.css"/>
+    <!-- <link rel="stylesheet" href="/Student/Students styles/profile.css"> -->
+    <link rel="icon" href="/images/logo.png" type="image/x-icon">
+</head>
+<body>
+<div layout:fragment="content">
+    <form th:action="@{/admin/saveAccountant}" method="post" th:object="${accountant}">
+        <div class="profile">
+            <div class="padding"></div>
+            <div class="profile-header">
+                <div class="profile-ID">
+                    <h1 th:text="${accountant.user.userFullname}"></h1>
+                    <h2 th:text="${accountant.user.role}"></h2>
+                </div>
+            </div>
+            <div class="profile-des">
+                <div class="profile-des-1">
+                    <input type="hidden" th:field="${accountant.user.password}">
+                    <div class="info-group read-only">
+                        <div class="info-label">ID:</div>
+                        <input type="text" th:field="${accountant.user.userID}" readonly>
+                    </div>
+                    <div class="info-group read-only">
+                        <div class="info-label">Role:</div>
+                        <input type="text" th:field="${accountant.user.role}" readonly>
+                    </div>
+                    <div class="info-group read-only">
+                        <div class="info-label">accountant Code:</div>
+                        <input type="text" th:field="${accountant.accountantCode}" readonly>
+                    </div>
+                    <div class="info-group read-only">
+                        <div class="info-label">Username:</div>
+                        <label>
+                            <input type="text" th:field="${accountant.user.username}" readonly/>
+                        </label>
+                    </div>
+                    <div class="info-group">
+                        <div class="info-label">Full Name:</div>
+                        <input type="text" th:field="${accountant.user.userFullname}" required>
+                    </div>
+                </div>
+                <div class="profile-des-2">
+                    <div class="info-group">
+                        <div class="info-label">Date of Birth:</div>
+                        <input type="date" th:field="${accountant.user.dateOfBirth}" required>
+                    </div>
+                    <div class="info-group">
+                        <div class="info-label">Email:</div>
+                        <input type="text" th:field="${accountant.user.email}" required>
+                    </div>
+                    <div class="info-group">
+                        <div class="info-label">Address:</div>
+                        <input type="text" th:field="${accountant.user.address}" required>
+                    </div>
+                    <div class="info-group">
+                        <div class="info-label">Phone Number:</div>
+                        <input type="text" th:field="${accountant.user.phoneNumber}" required>
+                    </div>
+                    <div class="info-group">
+                        <div class="info-label">Gender:</div>
+                        <select th:field="${accountant.user.gender}">
+                            <option value="Male">Male</option>
+                            <option value="Female">Female</option>
+                            <option value="Other">Other</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div id="button-container">
+                <button type="submit">Update</button>
+            </div>
+        </div>
+    </form>
+</div>
+</body>
+</html>

@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html
+        lang="en"
+        xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+        layout:decorate="~{_layout_admin}"
+        xmlns:th="">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+    />
+    <link
+      href="https://fonts.googleapis.com/css?family=Inter"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="../css/admin-crud-course-style.css" />
+    <link rel="stylesheet" href="../css/header-style.css" />
+    <link rel="stylesheet" href="../css/sidebar.css" />
+    <link rel="icon" href="../images/logo.png" type="image/x-icon">
+    <script
+      type="text/javascript"
+      th:src="@{/js/admin-crud-add-course-js.js}"
+    ></script>
+    <title>View Mark</title>
+  </head>
+
+  <body class="crud-course-admin">
+    <div layout:fragment="content" class="container">
+      <h1>Course Information</h1>
+      <div class="course-option-container">
+        <button id="button-1">Add Course</button>
+        <button id="button-2">Delete Selected</button>
+      </div>
+
+      <div id="myModal" class="modal">
+        <div class="modal-content">
+          <span class="close">&times;</span>
+          <p id="add-a-course">ADD A COURSE</p>
+
+          <table class="grade-table">
+            <tr>
+              <th>Major:</th>
+              <td>
+                <select id="major-option">
+                  <option value="0">FIT</option>
+                  <option value="1">FMT</option>
+                </select>
+              </td>
+            </tr>
+            <tr>
+              <th>Course's name</th>
+              <td>
+                <label>
+                  <input type="text" />
+                </label>
+              </td>
+            </tr>
+            <tr>
+              <th>Course's ID</th>
+              <td>
+                <label>
+                  <input type="text" />
+                </label>
+              </td>
+            </tr>
+          </table>
+          <div class="grade-options-container">
+            <button>Confirm</button>
+            <button>Reset</button>
+          </div>
+        </div>
+      </div>
+
+      <table>
+        <thead>
+          <tr>
+            <th style="width: 1%; height: 20px"></th>
+            <th style="width: 10%; height: 20px; font-size: 20px">Course ID</th>
+            <th style="width: 15%; height: 20px; font-size: 20px">Course</th>
+            <th style="width: 3%; height: 20px; font-size: 20px">Major</th>
+            <th
+              colspan="3"
+              style="width: 10%; height: 20px; font-size: 20px"
+            ></th>
+          </tr>
+        </thead>
+        <tbody>
+          <td class="row_2">
+            <span style="color: black; cursor: pointer">
+              <i class="fa-solid fa-magnifying-glass fa-2x"></i>
+            </span>
+          </td>
+          <td class="row_2" style="font-size: 20px">...</td>
+          <td class="row_2" style="font-size: 20px">...</td>
+          <td class="row_2" style="font-size: 20px">...</td>
+          <td class="row_2"></td>
+          <td class="row_2"></td>
+          <td class="row_2"></td>
+        </tbody>
+        <tbody>
+          <td>
+            <input
+              type="checkbox"
+              style="height: 20px; width: 20px; cursor: pointer"
+            />
+          </td>
+          <td style="font-size: 18px">61FITSE1</td>
+          <td style="font-size: 18px">Software Engineer 2</td>
+          <td style="font-size: 18px">FIT</td>
+          <td>
+            <i
+              class="fa-regular fa-pen-to-square fa-1x"
+              style="cursor: pointer"
+            ></i>
+          </td>
+          <td>
+            <i class="fa-regular fa-trash-can" style="cursor: pointer"></i>
+          </td>
+          <td>
+            <i class="fa-solid fa-bars fa-1x" style="cursor: pointer"></i>
+          </td>
+        </tbody>
+        <tbody>
+          <td>
+            <input
+              type="checkbox"
+              style="height: 20px; width: 20px; cursor: pointer"
+            />
+          </td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+        </tbody>
+        <tbody>
+          <td>
+            <input
+              type="checkbox"
+              style="height: 20px; width: 20px; cursor: pointer"
+            />
+          </td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+        </tbody>
+        <tbody>
+          <td>
+            <input
+              type="checkbox"
+              style="height: 20px; width: 20px; cursor: pointer"
+            />
+          </td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+        </tbody>
+        <tbody>
+          <td>
+            <input
+              type="checkbox"
+              style="height: 20px; width: 20px; cursor: pointer"
+            />
+          </td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+        </tbody>
+        <tbody>
+          <td>
+            <input
+              type="checkbox"
+              style="height: 20px; width: 20px; cursor: pointer"
+            />
+          </td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+        </tbody>
+        <tbody>
+          <td>
+            <input
+              type="checkbox"
+              style="height: 20px; width: 20px; cursor: pointer"
+            />
+          </td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+        </tbody>
+      </table>
+    </div>
+  </body>
+</html>

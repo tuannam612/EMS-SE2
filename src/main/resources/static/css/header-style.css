@@ -1,0 +1,23 @@
+.top-header {
+    background-color: #9A2229;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    padding-left: 20px;
+    display: flex;
+    align-items: center; /* Vertically center items */
+    width: 100%;
+}
+
+#school-logo-header {
+    width: 50px;
+    height: auto;
+    margin-right: 40px; /* Add some space between the image and text */
+    margin-left: 30px;
+}
+
+#school-name-header {
+    font-weight: 900;
+    font-size: 25px;
+    margin: 0;
+    color: white;
+}

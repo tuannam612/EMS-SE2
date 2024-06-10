@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{_layout_admin}">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Details</title>
+    <link href="https://fonts.googleapis.com/css?family=Inter" rel="stylesheet"/>
+    <link rel="stylesheet" type="text/css" href="/css/profile.css"/>
+    <link rel="stylesheet" type="text/css" href="/css/header-style.css"/>
+    <link rel="stylesheet" type="text/css" href="/css/sidebar.css"/>
+    <link rel="icon" href="/images/logo.png" type="image/x-icon">
+    <!-- <link rel="stylesheet" href="/Student/Students styles/profile.css"> -->
+</head>
+<body>
+<div layout:fragment="content">
+    <div class="profile">
+        <div class="padding"></div>
+        <div class="profile-header">
+            <div class="profile-ID">
+                <h1 th:text="${admin.user.userFullname}"></h1>
+                <h2 th:text="${admin.user.role}"></h2>
+            </div>
+        </div>
+        <div class="profile-des">
+            <div class="profile-des-1">
+                <div class="info-group">
+                    <div class="info-label">ID:</div>
+                    <label>
+                        <input type="text" th:value="${admin.user.userID}" readonly>
+                    </label>
+                </div>
+                <div class="info-group">
+                    <div class="info-label">Role:</div>
+                    <label>
+                        <input type="text" th:value="${admin.user.role}" readonly>
+                    </label>
+                </div>
+                <div class="info-group">
+                    <div class="info-label">Admin Code:</div>
+                    <label>
+                        <input type="text" th:value="${admin.adminCode}" readonly>
+                    </label>
+                </div>
+                <div class="info-group">
+                    <div class="info-label">Username:</div>
+                    <label>
+                        <input type="text" th:value="${admin.user.username}" readonly>
+                    </label>
+                </div>
+                <div class="info-group">
+                    <div class="info-label">Full Name:</div>
+                    <label>
+                        <input type="text" th:field="${admin.user.userFullname}">
+                    </label>
+                </div>
+            </div>
+            <div class="profile-des-2">
+                <div class="info-group">
+                    <div class="info-label">Date of Birth:</div>
+                    <label>
+                        <input type="text" th:value="${admin.user.dateOfBirth}"  readonly>
+                    </label>
+                </div>
+                <div class="info-group">
+                    <div class="info-label">Email:</div>
+                    <label>
+                        <input type="text" th:value="${admin.user.email}" readonly>
+                    </label>
+                </div>
+                <div class="info-group">
+                    <div class="info-label">Address:</div>
+                    <label>
+                        <input type="text" th:value="${admin.user.address}" readonly>
+                    </label>
+                </div>
+                <div class="info-group">
+                    <div class="info-label">Phone Number:</div>
+                    <label>
+                        <input type="text" th:value="${admin.user.phoneNumber}" readonly>
+                    </label>
+                </div>
+                <div class="info-group">
+                    <div class="info-label">Gender:</div>
+                    <label>
+                        <input type="text" th:value="${admin.user.gender}" readonly>
+                    </label>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

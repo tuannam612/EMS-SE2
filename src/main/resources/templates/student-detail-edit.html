@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{_layout_admin}">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Details</title>
+    <link href="https://fonts.googleapis.com/css?family=Inter" rel="stylesheet"/>
+    <link rel="stylesheet" type="text/css" href="/css/profile.css"/>
+    <link rel="stylesheet" type="text/css" href="/css/header-style.css"/>
+    <link rel="stylesheet" type="text/css" href="/css/sidebar.css"/>
+    <link rel="icon" href="/images/logo.png" type="image/x-icon">
+    <!-- <link rel="stylesheet" href="/Student/Students styles/profile.css"> -->
+    <script
+            type="text/javascript"
+            th:src="@{/js/profile-edit-js.js}"
+    ></script>
+</head>
+<body>
+<div layout:fragment="content">
+    <div id="error-popup" class="error-popup">
+        <p id="error-text"> Warning </p>
+        <span id="error-message"></span>
+        <button  onclick="closeErrorPopup()">Close</button>
+    </div>
+    <form th:action="@{/admin/saveStudent}" method="post" th:object="${student}">
+        <div class="profile">
+            <div class="padding"></div>
+            <div class="profile-header">
+                <div class="profile-ID">
+                    <h1 th:text="${student.user.userFullname}"></h1>
+                    <h2 th:text="${student.user.role}"></h2>
+                </div>
+            </div>
+            <div class="profile-des">
+                <div class="profile-des-1">
+                    <input type="hidden" th:field="${student.user.password}">
+                    <div class="info-group read-only">
+                        <div class="info-label">ID:</div>
+                        <input type="text" th:field="${student.user.userID}" readonly>
+                    </div>
+                    <div class="info-group read-only">
+                        <div class="info-label">Role:</div>
+                        <input type="text" th:field="${student.user.role}" readonly>
+                    </div>
+                    <div class="info-group read-only">
+                        <div class="info-label">Student Code:</div>
+                        <input type="text" th:field="${student.studentCode}" readonly>
+                    </div>
+                    <div class="info-group read-only">
+                        <div class="info-label">Username:</div>
+                        <label>
+                            <input type="text" th:field="${student.user.username}" readonly/>
+                        </label>
+                    </div>
+                    <div class="info-group">
+                        <div class="info-label">Full Name:</div>
+                        <input type="text" th:field="${student.user.userFullname}" required>
+                    </div>
+                    <div class="info-group">
+                        <div class="info-label">Date of Birth:</div>
+                        <input type="date" th:field="${student.user.dateOfBirth}" required>
+                    </div>
+                </div>
+                <div class="profile-des-2">
+                    <div class="info-group">
+                        <div class="info-label">Email:</div>
+                        <input type="text" th:field="${student.user.email}" required>
+                    </div>
+                    <div class="info-group">
+                        <div class="info-label">Address:</div>
+                        <input type="text" th:field="${student.user.address}" required>
+                    </div>
+                    <div class="info-group">
+                        <div class="info-label">Phone Number:</div>
+                        <input type="text" th:field="${student.user.phoneNumber}" required>
+                    </div>
+                    <div class="info-group">
+                        <div class="info-label">Gender:</div>
+                        <select th:field="${student.user.gender}">
+                            <option value="Male">Male</option>
+                            <option value="Female">Female</option>
+                            <option value="Other">Other</option>
+                        </select>
+                    </div>
+                    <div class="info-group">
+                        <div class="info-label">Class:</div>
+                        <input type="text" th:field="${student.classBelong}" required>
+                    </div>
+                    <div class="info-group">
+                        <div class="info-label">Training System:</div>
+                        <label>
+                            <select th:field="${student.trainingSystem}"
+                            >
+                                <option value="Bachelor">
+                                    Bachelor
+                                </option>
+                                <option value="Master">
+                                    Master
+                                </option>
+                                <option value="PhD">
+                                    PhD
+                                </option>
+                            </select>
+                        </label>
+                    </div>
+                    <div class="info-group">
+                        <div class="info-label">Major:</div>
+                        <select th:field="*{major}">
+                            <option th:each="major : ${majors}" th:value="${major.majorId}" th:text="${major.majorName}"></option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div id="button-container">
+                <button type="submit">Update</button>
+            </div>
+        </div>
+    </form>
+</div>
+</body>
+</html>

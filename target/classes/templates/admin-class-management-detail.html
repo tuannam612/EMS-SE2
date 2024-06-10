@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{_layout_admin}" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Class Information</title>
+    <link href='https://fonts.googleapis.com/css?family=Inter' rel='stylesheet'>
+    <link rel="stylesheet" href="../css/admin-class-management-detail-style.css">
+    <link rel="stylesheet" href="../css/header-style.css">
+    <link rel="stylesheet" href="../css/sidebar.css">
+    <link rel="icon" href="../images/logo.png" type="image/x-icon">
+    <script type="text/javascript" th:src="@{/js/teacher-grade-management-js.js}"></script>
+</head>
+<body>
+<div layout:fragment="content" class="container">
+    <h1>Class Information</h1>
+    <div class="controller">
+        <table id="table-information">
+            <tr>
+                <th>Course:</th>
+                <td>Software Engineer 2</td>
+            </tr>
+            <tr>
+                <th>Teacher:</th>
+                <td>Nguyen Van A</td>
+            </tr>
+            <tr>
+                <th>Schedule:</th>
+                <td>Monday, 7.20 - 11.10</td>
+            </tr>
+            <tr>
+                <th>Room:</th>
+                <td>D1-410</td>
+            </tr>
+        </table>
+    </div>
+<div id="myModal" class="modal">
+    <div class="modal-content">
+        <span class="close">&times;</span>
+        <table class="info-table">
+            <tr>
+                <th>Student ID:</th>
+                <td>21010001</td>
+            </tr>
+            <tr>
+                <th>Student's name:</th>
+                <td>Nguyen Thanh An</td>
+            </tr>
+            <tr>
+                <th>Class:</th>
+                <td>01</td>
+            </tr>
+        </table>
+
+
+        <table class="grade-table">
+            <tr>
+                <th>10% mark</th>
+                <td>
+                    <label>
+                        <input type="number"/>
+                    </label>
+                </td>
+            </tr>
+            <tr>
+                <th>30% mark</th>
+                <td>
+                    <label>
+                        <input type="number"/>
+                    </label>
+                </td>
+            </tr>
+            <tr>
+                <th>60% mark</th>
+                <td>
+                    <label>
+                        <input type="number"/>
+                    </label>
+                </td>
+            </tr>
+        </table>
+        <div class="grade-options-container">
+            <button>Confirm</button>
+            <button>Cancel</button>
+        </div>
+    </div>
+</div>
+
+
+<table class="content-table">
+    <thead>
+    <tr>
+        <th>Student's Name</th>
+        <th>Class</th>
+        <th>Student ID</th>
+        <th>Mark (10%)</th>
+        <th>Mark (30%)</th>
+        <th>Mark (60%)</th>
+        <th>Average</th>
+        <th>Grade</th>
+        <th></th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+        <td class="course">Nguyen Van A</td>
+        <td>01</td>
+        <td>21010001</td>
+        <td>10</td>
+        <td>8.5</td>
+        <td>7.5</td>
+        <td>8.05</td>
+        <td>A</td>
+        <td>
+            <div class="logo-edit-container">
+                <input id="modalOpener" type="image" class="logo-edit" src="/images/edit.png" alt="edit"/>
+            </div>
+        </td>
+    </tr>
+    </tbody>
+</table>
+</div>
+</body>
+</html>

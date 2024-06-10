@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{_layout_admin}">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Details</title>
+    <link href="https://fonts.googleapis.com/css?family=Inter" rel="stylesheet"/>
+    <link rel="stylesheet" type="text/css" href="/css/profile.css"/>
+    <link rel="stylesheet" type="text/css" href="/css/header-style.css"/>
+    <link rel="stylesheet" type="text/css" href="/css/sidebar.css"/>
+    <link rel="icon" href="/images/logo.png" type="image/x-icon">
+    <!-- <link rel="stylesheet" href="/Student/Students styles/profile.css"> -->
+</head>
+<body>
+<div layout:fragment="content">
+    <form th:action="@{/admin/saveMajor}" method="post" th:object="${major}">
+        <div class="profile">
+            <div class="padding"></div>
+            <div class="profile-header">
+                <div class="profile-ID">
+                </div>
+            </div>
+            <div class="profile-des">
+                <div class="profile-des-1">
+                    <div class="info-group read-only">
+                        <div class="info-label">ID:</div>
+                        <input type="number" th:field="${major.majorId}" readonly>
+                    </div>
+                    <div class="info-group">
+                        <div class="info-label">Major Name:</div>
+                        <input type="text" th:field="${major.majorName}">
+                    </div>
+                    <div class="info-group">
+                        <div class="info-label">Based Course Tuition Fee:</div>
+                        <input type="number" th:field="${major.tuitionBasedCourse}">
+                    </div>
+                    <div class="info-group">
+                        <div class="info-label">Specialized Course Tuition Fee:</div>
+                        <label>
+                            <input type="number" th:field="${major.tuitionSpecializedCourse}"/>
+                        </label>
+                    </div>
+                </div>
+            </div>
+            <div id="button-container">
+                <button type="submit">Update</button>
+            </div>
+        </div>
+    </form>
+</div>
+</body>
+</html>

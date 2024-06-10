@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html
+        lang="en"
+        xmlns:th="http://www.thymeleaf.org"
+        xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+        layout:decorate="~{_layout_admin}">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Enrollment Management</title>
+    <link
+            href="https://fonts.googleapis.com/css?family=Inter"
+            rel="stylesheet"
+    />
+    <link rel="stylesheet" type="text/css" href="/css/admin-account-management-style.css"/>
+    <link rel="stylesheet" type="text/css" href="/css/header-style.css"/>
+    <link rel="stylesheet" type="text/css" href="/css/sidebar.css"/>
+    <link rel="icon" href="/images/logo.png" type="image/x-icon">
+    <script
+            type="text/javascript"
+            th:src="@{/js/admin-account-management-js.js}"
+    ></script>
+    <script
+            type="text/javascript"
+            th:src="@{/js/enrollment-management-js.js}" defer
+    ></script>
+    <script
+            type="text/javascript"
+            th:src="@{/js/check-capacity-js.js}" defer
+    ></script>
+</head>
+
+<body>
+<div layout:fragment="content" class="container">
+    <h1>Enrollment Information</h1>
+    <div class="controller">
+        <div class="options-container">
+            <button id="add-button">Add Enrollment</button>
+            <form th:action="@{/admin/listEnrollment}" method="get">
+                <button type="submit" name="showAll">Show All</button>
+            </form>
+        </div>
+        <div id="searcher">
+            <form th:action="@{/admin/listEnrollment}" method="get">
+                <input type="text" name="timetableId" placeholder="Search by Enrollment ID">
+                <button type="submit">Search</button>
+            </form>
+        </div>
+    </div>
+    <div id="error-popup" class="error-popup">
+        <p id="error-text"> Warning </p>
+        <span id="error-message"></span>
+        <button onclick="closeErrorPopup()">Close</button>
+    </div>
+
+    <!--Admin modal-->
+    <div id="add-modal" class="modal">
+                <form
+                        th:action="@{/admin/insertEnrollment}"
+                        th:object="${enrollment}"
+                        method="post"
+                        onsubmit="return validateForm()"
+                >
+                    <div class="modal-content">
+                        <h1>ADD ENROLLMENT</h1>
+                        <div th:if="${errorMessage}" class="error-message">
+                            <span th:text="${errorMessage}" class="error-text"></span>
+                        </div>
+                        <div class="table-container">
+                            <table class="info-table">
+                                <tr>
+                                    <th>Semester:</th>
+                                    <td>
+                                        <select id="semesterSelect" th:field="*{semester.semesterId}">
+                                            <option value="">Select Semester</option>
+                                            <option th:each="semester : ${semesters}"
+                                                    th:value="${semester.semesterId}"
+                                                    th:text="'Semester ' + ${semester.semesterNum} + ', Year: ' + ${semester.startYear} + '-' + ${semester.endYear}">
+                                            </option>
+                                        </select>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th>Course:</th>
+                                    <td>
+                                        <select th:id="courseSelect" th:field="*{course.courseId}" name="courseId">
+                                            <option value="">Select Course</option>
+                                            <!-- Courses will be dynamically populated here -->
+                                        </select>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th>Student:</th>
+                                    <td>
+                                        <select th:field="*{student.studentCode}">
+                                            <option value="">Select Student</option>
+                                            <option th:each="student : ${students}"
+                                                    th:value="${student.studentCode}"
+                                                    th:text="'Code: ' + ${student.studentCode} + ', Name: ' + ${student.user.userFullname} + ', Class: ' + ${student.classBelong}">
+                                            </option>
+                                        </select>
+                                    </td>
+                                </tr>
+
+                            </table>
+                        </div>
+                        <div th:if="${errorMessage}" class="error-message">
+                            <span th:text="${errorMessage}" class="error-text"></span>
+                        </div>
+                        <div class="grade-options-container">
+                            <button type="submit" th:id="confirm-button" class="confirm-field">Confirm</button>
+                            <button type="reset" id="cancel-add" class="close-field">Cancel</button>
+                        </div>
+                    </div>
+                </form>
+    </div>
+
+    <!--Admin accounts table-->
+
+    <table class="content-table">
+        <thead>
+        <tr id="table-header">
+            <th></th>
+            <th>Id</th>
+            <th>Semester</th>
+            <th>Student Code</th>
+            <th>Course Name</th>
+            <th>Course Code</th>
+            <th>Credit</th>
+            <th>Major</th>
+
+            <th colspan="3" style="width: 10%; height: 20px">Option</th>
+        </tr>
+        <tr id="table-searcher">
+            <th class="utility-column">
+                <div class="logo-table-container">
+                    <input
+                            id="modalOpener"
+                            type="image"
+                            class="logo-table"
+                            src="/images/search.png"
+                            alt="search"
+                    />
+                </div>
+            </th>
+            <th>...</th>
+            <th>...</th>
+            <th>...</th>
+            <th>...</th>
+            <th>...</th>
+            <th>...</th>
+            <th>...</th>
+
+            <th></th>
+            <th></th>
+            <th></th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="enrollment : ${enrollments}">
+            <td class="checkbox-container">
+                <label>
+                    <input type="checkbox" class="checkbox"/>
+                </label>
+            </td>
+            <td th:text="${enrollment.enrollmentId}"></td>
+
+            <td th:text="'Semester ' + ${enrollment.semester.semesterNum} +
+      ' Year ' + ${enrollment.semester.startYear} + '-' + ${enrollment.semester.endYear}"></td>
+            <td th:text="${enrollment.student.studentCode}"></td>
+            <td th:text="${enrollment.course.courseName}"></td>
+            <td th:text="${enrollment.course.courseCode}"></td>
+
+            <td th:text="${enrollment.course.credit}"></td>
+            <td th:text="${enrollment.course.major.majorName}"></td>
+            <td class="utility-column">
+                <div class="logo-table-container">
+                    <a th:href="'/admin/updateEnrollment/' + ${enrollment.enrollmentId}">
+                        <input type="image" class="logo-table" alt="edit" th:src="@{../images/edit.png}"/>
+                    </a>
+                </div>
+            </td>
+            <td class="utility-column">
+                <div class="logo-table-container">
+                    <a th:href="'/admin/enrollmentDetail/' + ${enrollment.enrollmentId}">
+                        <input type="image" class="logo-table" th:src="@{../images/menu.png}" alt="menu"/>
+                    </a>
+                </div>
+            </td>
+            <td class="utility-column">
+                <div class="logo-table-container">
+                    <a th:href="'/admin/deleteEnrollment/' + ${enrollment.enrollmentId}">
+                        <input type="image" class="logo-table" th:src="@{../images/delete.png}" alt="delete"/>
+                    </a>
+                </div>
+            </td>
+        </tr>
+        </tbody>
+
+    </table>
+</div>
+
+</body>
+</html>

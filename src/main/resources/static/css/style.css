@@ -1,0 +1,77 @@
+body, html {
+    margin: 0;
+    padding: 0;
+}
+body {
+    font-family: 'Inter';
+    background-color: #F9F4EE;
+    padding-left: 20px;
+}
+
+.container {
+    justify-content: center; /* Horizontally center items */
+    align-items: center; /* Vertically center items */
+    display: flex;
+    flex-direction: column;
+
+}
+h1 {
+    text-align: center;
+}
+
+select {
+    padding: 10px;
+    font-size: 20px;
+    font-weight: 600;
+    border-radius: 5px;
+    margin-left: 20px;
+    margin-right: 20px;
+}
+
+.controller {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.options-container {
+    display: flex;
+    flex-direction: column;
+    margin-left: 20px;
+    button {
+        padding: 5px 20px 5px;
+        font-size: 20px;
+        border-radius: 6px;
+        margin-bottom: 10px;
+        background-color: #FA9F42;
+        font-weight: 600;
+    }
+}
+
+
+
+table {
+    margin-top: 30px;
+    border-collapse: collapse;
+    width: 80%;
+}
+th, td {
+    border: 1px solid black;
+    text-align: auto;
+}
+th {
+    background-color: #9A2229;
+    color: white;
+    text-align: center;
+    padding: 10px 20px 10px;
+}
+
+td {
+    padding: 10px 15px 10px;
+     background-color: #F6ECEC;
+     text-align: center;
+ }
+
+ .course {
+     width: 150px;
+ }

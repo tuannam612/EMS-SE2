@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html
+        lang="en"
+        xmlns:th="http://www.thymeleaf.org"
+        xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+        layout:decorate="~{_layout_admin}">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Semester Management</title>
+    <link
+            href="https://fonts.googleapis.com/css?family=Inter"
+            rel="stylesheet"
+    />
+    <link rel="stylesheet" type="text/css" href="/css/admin-account-management-style.css"/>
+    <link rel="stylesheet" type="text/css" href="/css/header-style.css"/>
+    <link rel="stylesheet" type="text/css" href="/css/sidebar.css"/>
+    <link rel="icon" href="/images/logo.png" type="image/x-icon">
+    <script
+            type="text/javascript"
+            th:src="@{/js/admin-account-management-js.js}"
+    >
+    </script>
+</head>
+
+<body>
+<div layout:fragment="content" class="container">
+    <h1>Semester Information</h1>
+    <div class="controller">
+        <div class="options-container">
+            <button id="add-button">Add Semester</button>
+            <form th:action="@{/admin/listSemester}" method="get">
+                <button type="submit" name="showAll">Show All</button>
+            </form>
+        </div>
+        <div id="searcher">
+            <form th:action="@{/admin/listSemester}" method="get">
+                <input type="text" name="semesterId" placeholder="Search by Semester ID">
+                <button type="submit">Search</button>
+            </form>
+        </div>
+    </div>
+
+    <div id="error-popup" class="error-popup">
+        <p id="error-text"> Warning </p>
+        <span id="error-message"></span>
+        <button  onclick="closeErrorPopup()">Close</button>
+    </div>
+    <!--Admin modal-->
+    <div id="add-modal" class="modal">
+        <form
+                th:action="@{/admin/insertSemester}"
+                th:object="${semester}"
+                method="post"
+                onsubmit="return validateForm()"
+        >
+            <div class="modal-content">
+                <h1>ADD SEMESTER</h1>
+                <div class="table-container">
+                    <table class="info-table">
+                        <tr>
+                            <th>Start Year:</th>
+                            <td>
+                                <div>
+                                    <label>
+                                        <input type="number" th:field="*{startYear}" class="add-input" />
+                                    </label>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>End Year:</th>
+                            <td>
+                                <label>
+                                    <input type="number" th:field="*{endYear}" class="add-input">
+                                </label>
+
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>Semester Number:</th>
+                            <td>
+                                <label>
+                                    <input type="number" th:field="*{semesterNum}" class="add-input">
+                                </label>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+                <div class="grade-options-container">
+                    <button type="submit" class="confirm-field">Confirm</button>
+                    <button type="reset" id="cancel-add" class="close-field">Cancel</button>
+                </div>
+            </div>
+        </form>
+    </div>
+
+    <!--Admin accounts table-->
+
+    <table class="content-table">
+        <thead>
+        <tr id="table-header">
+            <th></th>
+            <th>Semester ID</th>
+            <th>Start Year</th>
+            <th>End Year</th>
+            <th>Semester Number</th>
+            <th colspan="2" style="width: 10%; height: 20px">Option</th>
+        </tr>
+        <tr id="table-searcher">
+            <th class="utility-column">
+                <div class="logo-table-container">
+                    <input
+                            id="modalOpener"
+                            type="image"
+                            class="logo-table"
+                            src="/images/search.png"
+                            alt="search"
+                    />
+                </div>
+            </th>
+            <th>...</th>
+            <th>...</th>
+            <th>...</th>
+            <th>...</th>
+            <th></th>
+            <th></th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="semester : ${semesters}">
+            <td class="checkbox-container">
+                <label>
+                    <input type="checkbox" class="checkbox"/>
+                </label>
+            </td>
+            <td th:text="${semester.semesterId}">
+            </td>
+            <td th:text="${semester.startYear}"></td>
+            <td th:text="${semester.endYear}"></td>
+            <td th:text="${semester.semesterNum}"></td>
+            <td class="utility-column">
+                <div class="logo-table-container">
+                    <a th:href="'/admin/updateSemester/' + ${semester.semesterId}">
+                        <input type="image" class="logo-table" alt="edit" th:src="@{../images/edit.png}"/>
+                    </a>
+                </div>
+            </td>
+            <td class="utility-column">
+                <div class="logo-table-container">
+                    <a th:href="'/admin/deleteSemester/' + ${semester.semesterId}">
+                        <input type="image" class="logo-table" th:src="@{../images/delete.png}" alt="delete"/>
+                    </a>
+                </div>
+            </td>
+        </tr>
+        </tbody>
+
+    </table>
+</div>
+
+</body>
+</html>

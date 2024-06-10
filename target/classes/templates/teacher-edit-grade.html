@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{_layout_teacher}">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Details</title>
+    <link href="https://fonts.googleapis.com/css?family=Inter" rel="stylesheet"/>
+    <link rel="stylesheet" type="text/css" href="/css/teacher-grade-management-style.css"/>
+    <link rel="stylesheet" type="text/css" href="/css/header-style.css"/>
+    <link rel="stylesheet" type="text/css" href="/css/sidebar.css"/>
+    <link rel="icon" href="/images/logo.png" type="image/x-icon">
+    <!-- <link rel="stylesheet" href="/Student/Students styles/profile.css"> -->
+    <script type="text/javascript"
+            th:src="@{/js/courseUpdate.js}"></script>
+    <script
+            type="text/javascript"
+            th:src="@{/js/admin-account-management-js.js}"
+    ></script>
+    <script
+            type="text/javascript"
+            th:src="@{/js/enrollment-management-js.js}" defer
+    ></script>
+    <script
+            type="text/javascript"
+            th:src="@{/js/check-capacity-js.js}" defer
+    ></script>
+</head>
+<body>
+<div layout:fragment="content">
+    <div id="edit-modal" class="modal">
+        <form
+                th:action="@{/teacher/saveGrade}" method="post" th:object="${enrollment}">
+            <div class="modal-content">
+                <h1>GRADE MANAGEMENT</h1>
+                <div class="table-container">
+                    <table class="info-table">
+                        <input type="hidden" th:field="${enrollment.semester}" />
+                        <input type="hidden" th:field="${enrollment.course}" />
+                        <input type="hidden" th:field="${enrollment.enrollmentId}" />
+                        <tr>
+                            <th>Course:</th>
+                            <td>
+                                <div>
+                                    <input type="text" name="id" class="add-input" th:field="${enrollment.course.courseName}" readonly/>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>Student's ID:</th>
+                            <td>
+                                <div>
+                                    <input type="text" name="id" class="add-input" th:field="${enrollment.student.studentCode}" readonly/>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>Student's Name:</th>
+                            <td>
+                                <label>
+                                    <input type="text"  name="fullName" class="add-input" th:field="${enrollment.student.user.userFullname}" readonly/>
+                                </label>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>Class:</th>
+                            <td>
+                                <label>
+                                    <input type="text"  name="class" class="add-input" th:field="${enrollment.student.classBelong}" readonly/>
+                                </label>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>Attendance Mark:</th>
+                            <td>
+                                <label>
+                                    <input type="number"  name="number" class="add-input" th:field="${enrollment.attendance}" required/>
+                                </label>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>Midterm Mark:</th>
+                            <td>
+                                <label>
+                                    <input type="number"  name="email" class="add-input" th:field="${enrollment.midtermGrade}" required/>
+                                </label>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>Final Mark:</th>
+                            <td>
+                                <label>
+                                    <input type="number"  name="dateOfBirth" class="add-input" th:field="${enrollment.finalGrade}" required/>
+                                </label>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+                <div class="grade-options-container">
+                    <button type="submit" class="confirm-field" >Confirm</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+</body>
+</html>

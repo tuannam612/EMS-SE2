@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Hanoi University</title>
+
+</head>
+<body>
+<div th:replace="~{top-header :: topHeader}"></div>
+<div class="body-container">
+    <div th:replace="~{sidebar-teacher :: sidebar}"></div>
+    <div class="main-content-container">
+        <div layout:fragment="content">
+            <!-- content page will override this -->
+        </div>
+    </div>
+</div>
+</body>
+</html>

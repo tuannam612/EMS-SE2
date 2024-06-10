@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{_layout_admin}" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Class Management</title>
+    <link href='https://fonts.googleapis.com/css?family=Inter' rel='stylesheet'>
+    <link rel="stylesheet" href="../css/admin-class-management-style.css">
+    <link rel="stylesheet" href="../css/header-style.css">
+    <link rel="stylesheet" href="../css/sidebar.css">
+    <link rel="icon" href="../images/logo.png" type="image/x-icon">
+    <script type="text/javascript" th:src="@{/js/admin-class-management-js.js}"></script>
+</head>
+<body>
+<div layout:fragment="content" class="container">
+    <h1>Class Information</h1>
+    <div class="controller">
+        <div class="options-container">
+            <button id="add-button">Add Class</button>
+            <button>Delete Selected</button>
+        </div>
+    </div>
+
+    <div id="add-modal" class="modal" >
+        <div class="modal-content">
+            <span id="close-add" class="close">&times;</span>
+            <h1>ADD A CLASS</h1>
+            <div class="table-container">
+                <table class="info-table">
+                    <tr>
+                        <th>Major:</th>
+                        <td>
+                            <label>
+                                <input type="text" disabled value="Faculty of Information Technology">
+                            </label>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>Course:</th>
+                        <td>
+                            <label>
+                                <input type="text" disabled value="Software Engineer 2">
+                            </label>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>Class:</th>
+                        <td>
+                            <label>
+                                <input type="text">
+                            </label>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>Seat:</th>
+                        <td>
+                            <label>
+                                <input type="number">
+                            </label>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>Schedule:</th>
+                        <td>
+                            <label>
+                                <input type="text">
+                            </label>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>Room:</th>
+                        <td>
+                            <label>
+                                <input type="text">
+                            </label>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+            <div class="grade-options-container">
+                <button>Confirm</button>
+                <button>Cancel</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="edit-modal" class="modal" >
+        <div class="modal-content">
+            <span id="close-edit" class="close">&times;</span>
+            <h1>EDIT A CLASS</h1>
+            <div class="table-container">
+            <table class="info-table">
+                <tr>
+                    <th>Major:</th>
+                    <td>
+                        <label>
+                        <input type="text" disabled value="Faculty of Information Technology">
+                    </label>
+                    </td>
+                </tr>
+                <tr>
+                    <th>Course:</th>
+                    <td>
+                        <label>
+                            <input type="text" disabled value="Software Engineer 2">
+                        </label>
+                    </td>
+                </tr>
+                <tr>
+                    <th>Class:</th>
+                    <td>
+                        <label>
+                            <input type="text" value="01">
+                        </label>
+                    </td>
+                </tr>
+                <tr>
+                    <th>Seat:</th>
+                    <td>
+                        <label>
+                            <input type="number" value="30">
+                        </label>
+                    </td>
+                </tr>
+                <tr>
+                    <th>Schedule:</th>
+                    <td>
+                        <label>
+                            <input type="text" value="Monday, 7.20 - 11.10">
+                        </label>
+                    </td>
+                </tr>
+                <tr>
+                    <th>Room:</th>
+                    <td>
+                        <label>
+                            <input type="text" value="D1-410">
+                        </label>
+                    </td>
+                </tr>
+            </table>
+            </div>
+            <div class="grade-options-container">
+                <button>Confirm</button>
+                <button>Cancel</button>
+            </div>
+        </div>
+    </div>
+
+
+    <table class="content-table">
+        <thead>
+        <tr id="table-header">
+            <th></th>
+            <th id="course-column">Course</th>
+            <th id="class-column">Class</th>
+            <th id="total-column">Total</th>
+            <th id="avail-column">Avail.</th>
+            <th id="schedule-column">Schedule</th>
+            <th></th>
+            <th></th>
+            <th></th>
+        </tr>
+        <tr id="table-searcher">
+            <th class="utility-column">
+                <div class="logo-table-container">
+                    <input id="modalOpener" type="image" class="logo-table" src="/images/search.png" alt="search"/>
+                </div>
+            </th>
+            <th>...</th>
+            <th>...</th>
+            <th>...</th>
+            <th>...</th>
+            <th>...</th>
+            <th></th>
+            <th></th>
+            <th></th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <td class="checkbox-container">
+                <label>
+                    <input type="checkbox" class="checkbox">
+                </label>
+            </td>
+            <td class="course">Software Engineer 2</td>
+            <td>01</td>
+            <td>30</td>
+            <td>30</td>
+            <td>Monday, 7.20 - 11.10, D1-410, 09/03/24</td>
+            <td class="utility-column">
+                <div class="logo-table-container">
+                    <input type="image" class="logo-table" id="logo-edit" src="/images/edit.png" alt="edit"/>
+                </div>
+            </td>
+            <td class="utility-column">
+                <div class="logo-table-container">
+                    <input type="image" class="logo-table" src="/images/menu.png" alt="menu"/>
+                </div>
+            </td>
+            <td class="utility-column">
+                <div class="logo-table-container">
+                    <input type="image" class="logo-table" src="/images/delete.png" alt="delete"/>
+                </div>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+</body>
+</html>

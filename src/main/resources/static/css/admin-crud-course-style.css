@@ -1,0 +1,204 @@
+.crud-course-admin {
+      background-color: #f9f4ee;
+      display: flex;
+      justify-content: center;
+      font-family: "Inter";
+      align-items: center;
+    }
+    h1 {
+      color: black;
+      font-size: 40px;
+      margin-left: 300px;
+    }
+
+    table {
+      margin-top: 20px;
+      border-collapse: collapse;
+      width: 100%;
+      border: 1px solid #ddd;
+    }
+
+    th,
+    td {
+      border: 1px solid black;
+      text-align: center;
+      width: 10px;
+    }
+
+    th {
+      background-color: #9a2229;
+      color: white;
+      text-align: center;
+      padding: 10px 20px 10px;
+    }
+    /*Chỉnh size của cells ở đây*/
+    td {
+      padding: 10px 10px 10px;
+      width: 120px;
+      height: 30px;
+      background-color: #f6ecec;
+    }
+    .course-option-container {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      align-items: center;
+      button {
+        padding: 5px 20px 5px;
+        font-size: 20px;
+        border-radius: 6px;
+        margin-bottom: 10px;
+        background-color: #fa9f42;
+        font-weight: 600;
+        cursor: pointer;
+        width: 300px;
+        height: 50px;
+      }
+      #button-1 {
+        border-width: 2px;
+        margin-left: 150px;
+      }
+      #button-2 {
+        border-width: 2px;
+        margin-right: 150px;
+      }
+    }
+    .row_2 {
+      background-color: #c18b8e;
+    }
+
+    .modal {
+      display: none; /* Hidden by default */
+      position: fixed; /* Stay in place */
+      z-index: 1; /* Sit on top */
+      padding-top: 100px; /* Location of the box */
+      left: 0;
+      top: 0;
+      width: 100%; /* Full width */
+      height: 100%; /* Full height */
+      overflow: auto; /* Enable scroll if needed */
+      background-color: rgb(0, 0, 0); /* Fallback color */
+      background-color: rgba(0, 0, 0, 0.4); /* Black w/ opacity */
+    }
+
+    .modal-content {
+      margin: 0 auto;
+      border: 1px solid black;
+      padding: 20px;
+      width: 40%;
+      background-color: #f6ecec;
+
+      .close {
+        color: #aaaaaa;
+        float: right;
+        font-size: 28px;
+        font-weight: bold;
+        padding-right: 10px;
+      }
+
+      .close:hover,
+      .close:focus {
+        color: #000;
+        text-decoration: none;
+        cursor: pointer;
+      }
+    }
+
+    .grade-table {
+      border: 3px solid black;
+      border-collapse: collapse;
+      table-layout: fixed;
+      width: 80%;
+      margin: 0 auto;
+
+      th,
+      td {
+        border: 1px solid black;
+        text-align: center;
+        padding: 10px 20px;
+        width: 50%;
+        color: black;
+      }
+
+      th {
+        font-weight: bold;
+        background-color: white;
+      }
+
+      input {
+        width: 230px;
+        text-align: center;
+        font-size: 20px;
+        border-radius: 2px;
+      }
+
+      input[type="number"]::-webkit-inner-spin-button,
+      input[type="number"]::-webkit-outer-spin-button {
+        -webkit-appearance: none;
+        -moz-appearance: textfield;
+      }
+    }
+
+    .grade-options-container {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: center;
+      padding-top: 20px;
+      gap: 20px;
+
+      button {
+        padding: 5px 40px;
+        font-size: 20px;
+        border-radius: 6px;
+        margin-bottom: 10px;
+        background-color: #fa9f42;
+        font-weight: 600;
+      }
+    }
+
+    .content-table {
+      margin-top: 30px;
+      border-collapse: collapse;
+      width: 80%;
+
+      th,
+      td {
+        border: 1px solid black;
+        text-align: left;
+      }
+
+      th {
+        background-color: #9a2229;
+        color: white;
+        text-align: center;
+        padding: 10px 20px 10px;
+      }
+
+      td {
+        padding: 10px 15px 10px;
+        background-color: #f6ecec;
+      }
+    }
+
+    .logo-edit {
+      width: 30px;
+      height: auto;
+    }
+
+    .logo-edit-container {
+      text-align: center;
+    }
+    #add-a-course {
+      font-size: 24px;
+      font-weight: 800;
+      margin-left: 250px;
+    }
+    #major-option {
+      width: 235px;
+      height: 30px;
+      border-radius: 2px;
+      text-align: center;
+      font-weight: bold;
+      font-size: 16px;
+    }

@@ -1,0 +1,106 @@
+body {
+  margin: 0;
+  padding: 0;
+  font-family: "Inter", serif;
+  background-color: #f9f4ee;
+}
+
+.body-container {
+  display: flex;
+}
+
+.main-content-container {
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+}
+
+.container {
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+}
+h1 {
+  color: black;
+  font-size: 40px;
+  align-content: center;
+}
+.FilterContain {
+  padding: 10px;
+  padding-bottom: 20px;
+  justify-content: space-between;
+  align-items: center;
+}
+#semesterSelect {
+  height: 40px;
+  width: 400px;
+  border-radius: 5px;
+  text-align: center;
+  font-weight: bold;
+  font-size: 20px;
+}
+option {
+  font-weight: bold;
+}
+
+table {
+  margin-top: 20px;
+  border-collapse: collapse;
+  width: 80%;
+  border: 1px solid #ddd;
+}
+
+th,
+td {
+  border: 1px solid black;
+  text-align: center;
+}
+
+th {
+  color: white;
+  background-color: #9A2229;
+  text-align: center;
+  padding: 10px 20px 10px;
+}
+td {
+  padding: 10px 10px 10px;
+
+  background-color: #f6ecec;
+}
+#index-col {
+  width: 1%;
+}
+#semester {
+  width: 50%;
+  background-color: #9a2229;
+  font-size: 20px;
+}
+#tuition-fee {
+  width: 20%;
+  background-color: #9a2229;
+  font-size: 20px;
+}
+#Owe {
+  width: 20%;
+  background-color: #9a2229;
+  font-size: 20px;
+}
+.row {
+  height: 30px;
+  font-weight: bold;
+  font-size: 20px;
+}
+.data {
+  font-weight: bold;
+  font-size: 20px;
+}
+.owe-amount {
+  color: red;
+  font-weight: bold;
+  font-size: 20px;
+}
+#total {
+  font-weight: bold;
+  font-size: 24px;
+}

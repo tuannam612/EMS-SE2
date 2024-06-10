@@ -1,0 +1,114 @@
+body {
+  margin: 0;
+  padding: 0;
+  font-family: "Inter", serif;
+  background-color: #f9f4ee;
+}
+
+.body-container {
+  display: flex;
+}
+
+.main-content-container {
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+}
+
+.container {
+  justify-content: center; /* Horizontally center items */
+  align-items: center; /* Vertically center items */
+  display: flex;
+  flex-direction: column;
+}
+h1 {
+  color: black;
+  font-size: 40px;
+  align-content: center;
+}
+
+table {
+  margin-top: 20px;
+  border-collapse: collapse;
+  width: 80%;
+  border: 1px solid #ddd;
+  margin-bottom: 20px;
+}
+
+th,
+td {
+  border: 1px solid black;
+  text-align: center;
+  width: 10px;
+}
+
+th {
+  background-color: #9a2229;
+  color: white;
+  text-align: center;
+  padding: 10px 20px 10px;
+}
+/*Chỉnh size của cells ở đây*/
+td {
+  padding: 10px 10px 10px;
+  width: 120px;
+  height: 30px;
+  background-color: #f6ecec;
+}
+
+.id {
+  width: 1%;
+  font-size: 20px;
+}
+.coursesId {
+  width: 10%;
+  font-size: 20px;
+}
+.courseName {
+  width: 20%;
+  font-size: 20px;
+}
+.credit {
+  width: 3%;
+  font-size: 20px;
+}
+.grade_10 {
+  width: 5%;
+  font-size: 20px;
+}
+.grade_4 {
+  width: 5%;
+  font-size: 20px;
+}
+.grade {
+  width: 5%;
+  font-size: 20px;
+}
+.pass {
+  width: 1%;
+  font-size: 20px;
+}
+.details {
+  width: 1%;
+  font-size: 20px;
+}
+.pass {
+  font-weight: bold;
+  cursor: pointer;
+}
+.fail {
+  font-weight: bold;
+  cursor: pointer;
+}
+.detail {
+  font-weight: bold;
+  cursor: pointer;
+}
+.data {
+  font-weight: bold;
+  font-size: 20px;
+}
+.total {
+  font-weight: bold;
+  font-size: 24px;
+}

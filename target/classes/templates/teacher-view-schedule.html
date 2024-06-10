@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{_layout_teacher}" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Schedule</title>
+  <link rel="stylesheet" href="../css/header-style.css">
+  <link rel="stylesheet" href="../css/sidebar.css">
+  <link rel="stylesheet" href='https://fonts.googleapis.com/css?family=Inter'>
+  <link rel="stylesheet" href="../css/student-view-schedule-style.css">
+  <link rel="icon" href="../images/logo.png" type="image/x-icon">
+  <script type="text/javascript">
+        let semester = [[${ semesterId }]];
+        function filterRedirect() {
+            let url = "/teacher/timetableDetails?semester="+semester;
+            window.location.href = url; // redirect
+        }
+        window.addEventListener("load", function () {
+            const semFilter = document.getElementById("semester");
+            semFilter.value = semester;
+            semFilter.addEventListener("change", function (e) {
+                semester = e.target.value;
+                filterRedirect();
+            });
+        });
+
+    </script>
+</head>
+
+<body>
+<div layout:fragment="content" class="container">
+  <h1>View Schedule</h1>
+  <div class="filterContainer">
+    <div class="option-container">
+      <label for="semester"></label>
+      <select id="semester" name="semester" class="filter">
+        <option
+                th:each="semester : ${semesters}"
+                th:value="${semester.semesterId}"
+                th:text="'Semester: '+${semester.semesterNum}+' Year: '+${semester.startYear}+' - '+${semester.endYear}"></option>
+      </select>
+    </div>
+  </div>
+  <table>
+    <thead>
+    <tr>
+      <th id="icon-left"></th>
+      <th>Mon</th>
+      <th>Tue</th>
+      <th>Wed</th>
+      <th>Thu</th>
+      <th>Fri</th>
+      <th>Sat</th>
+      <th id="icon-right"></th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="row, rowStat : ${#numbers.sequence(0, 5)}">
+      <td th:text="${row + 1}" class="courseId"></td>
+      <td th:each="col, colStat : ${#numbers.sequence(0, 5)}">
+        <div th:if="${teacherTimetable[row][col]?.course?.courseName}">
+          <p th:text="'Course: ' + ${teacherTimetable[row][col]?.course?.courseName}"></p>
+          <p th:text="'Course Code: ' + ${teacherTimetable[row][col]?.course?.courseCode}"></p>
+          <p th:text="'Room: ' + ${teacherTimetable[row][col]?.classroom?.roomNumber}"></p>
+        </div>
+      </td>
+      <td class="courseId"></td>
+    </tr>
+    </tbody>
+  </table>
+</div>
+</body>
+</html>

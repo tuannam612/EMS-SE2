@@ -1,0 +1,149 @@
+html {
+    height: 100%;
+
+  }
+body {
+    margin: 0;
+    padding: 0;
+    font-family: "Inter", serif;
+    background-color: #f9f4ee;
+    border-radius: 5px;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+
+.body-container {
+    display: flex;
+    width: 100%;
+}
+
+.main-content-container {
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+}
+
+.container {
+    justify-content: center; /* Horizontally center items */
+    align-items: center; /* Vertically center items */
+    display: flex;
+    flex-direction: column;
+
+}
+
+  .container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 0 1%;
+    width: 100%;
+    /* Ensures container fills viewport width */
+    /* Sets a maximum width for responsiveness */
+  }
+
+
+  h1 {
+    color: black;
+    text-align: center;
+    font-size: 40px;
+  }
+
+  table {
+    margin-bottom: 40px;
+    border-collapse: collapse;
+    width: 90%;
+    border: 1px solid #ddd;
+  }
+  .list-head{
+    background-color: orange;
+    display: flex;
+    /* flex-direction: column; */
+    align-items: center;
+    /* padding-left: 20px; */
+    width: 90%;
+    border: 1px solid #000;
+
+  }
+  #list-header {
+    text-align: left;
+    width: 100%;
+
+  }
+
+  th,
+  td {
+    border: 1px solid black;
+    text-align: center;
+
+  }
+
+  th {
+    background-color: #9a2229;
+    color: white;
+    text-align: center;
+    padding: 10px 20px 10px;
+  }
+
+  /*Chỉnh size của cells ở đây*/
+  td {
+    padding: 10px 10px 10px;
+    height: 30px;
+    background-color: #f6ecec;
+  }
+
+
+  .enroll-btn {
+    font-size: 18px;
+    cursor: pointer;
+    background-color: #FA9F42;
+}
+.enroll-butn:hover {
+    background-color: #9A2229;
+}
+a {
+  text-decoration: none;
+}
+  .data{
+    font-weight: bold
+  }
+  /* #index{
+    width: 1%; height: 1%
+  }
+  #courseName1{
+    width: 5%; height: 1%
+  }
+  #class1{
+    width: 5%; height: 1%
+  }
+  #total{
+    width: 5%; height: 1%
+  }
+  #avail{
+    width: 5%; height: 1%
+  }
+  #schedule{
+    width: 30%; height: 1%
+  }
+  #courseName2{
+    width: 15%; height: 1%
+  }
+  #class2{
+    width: 3%; height: 1%
+  }
+  #regDate{
+    width: 20%; height: 1%
+  }
+  #creNum{
+    width: 3%; height: 1%
+  }
+  #checkBox{
+    width: 5%; height: 1%
+  }
+  #delete{
+    width: 1%; height: 1%
+  }  */
+  .row2{
+    background-color: #c18b8e;
+    color:#000
+  }

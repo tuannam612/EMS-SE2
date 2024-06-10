@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<style th:inline="text">
+    /*<![CDATA[*/
+    body {
+        margin: 0;
+    padding: 0;
+    font-family: 'Inter';
+
+    }
+
+   .top-header {
+     background-color: #9A2229;
+     padding-top: 5px;
+     padding-bottom: 5px;
+     padding-left: 20px;
+     display: flex;
+     align-items: center; /* Vertically center items */
+   }
+
+   #school-logo-header {
+     width: 50px;
+     height: auto;
+     margin-right: 40px; /* Add some space between the image and text */
+       margin-left: 30px;
+   }
+
+    #school-name-header {
+        font-weight: 900;
+        font-size: 25px;
+        margin: 0;
+        color: white;
+    }
+    /*]]>*/
+</style>
+<head>
+    <link href='https://fonts.googleapis.com/css?family=Inter' rel='stylesheet'>
+</head>
+<body>
+<div th:fragment="topHeader" class="top-header">
+    <img src="/images/logo.png" alt="logo" id="school-logo-header">
+    <p id="school-name-header">HANOI UNIVERSITY</p>
+</div>
+</body>
+</html>

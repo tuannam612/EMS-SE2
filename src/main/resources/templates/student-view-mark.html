@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{_layout_student}">
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <link
+            rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+    />
+
+    <link
+            href="https://fonts.googleapis.com/css?family=Inter"
+            rel="stylesheet"
+    />
+    <link rel="stylesheet" href="/css/student-view-mark-style.css"/>
+    <link rel="stylesheet" href="/css/header-style.css"/>
+    <link rel="stylesheet" href="/css/sidebar.css"/>
+    <link rel="stylesheet" href="/css/admin-account-management-style.css"/>
+    <link rel="icon" href="/images/logo.png" type="image/x-icon">
+    <link
+            href="https://fonts.googleapis.com/css?family=Inter"
+            rel="stylesheet"
+    />
+
+    <title>View Mark</title>
+</head>
+
+<body>
+<div layout:fragment="content" class="container">
+    <h1>View Mark</h1>
+
+    <table th:each="semester : ${semesters} ">
+        <thead>
+        <div
+                style="
+                  background-color: white;
+                  width: fit-content;
+                  border: 1px black solid;
+                  border-radius: 10px;
+                "
+        >
+            <p style="padding: 5px 10px 5px; font-weight: bold" th:text="'Semester ' + ${semester.semesterNum} +
+                ', Year: ' + ${semester.startYear} + '-' + ${semester.endYear}" >
+            </p>
+        </div>
+        <tr>
+            <th style="width: 1%; height: 20px">ID</th>
+            <!-- <th style="width: 10%; height: 20px">Course ID</th> -->
+            <th style="width: 15%; height: 20px">Course Name</th>
+            <th style="width: 3%; height: 20px">Credit</th>
+            <th style="width: 3%; height: 20px">Attendance</th>
+            <th style="width: 4%; height: 20px">Midterm Grade</th>
+            <th style="width: 3%; height: 20px">Final Grade</th>
+            <th style="width: 3%; height: 20px">Total Grade (10)</th>
+            <th style="width: 5%; height: 20px">Pass</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="enrollment : ${enrollments}" th:if="${enrollment.course.semester.semesterId==semester.semesterId}">
+            <td style="font-weight: bold" ><p th:text="${enrollment.enrollmentId}"></p></td>
+            <!-- <td style="font-weight: bold">61FITSE1</td> -->
+            <td style="font-weight: bold" ><p th:text="${enrollment.course.courseName}"></p></td>
+            <td style="font-weight: bold" ><p th:text="${enrollment.course.credit}"></p></td>
+            <td style="font-weight: bold" ><p th:text="${enrollment.attendance}"></p></td>
+            <td style="font-weight: bold" ><p th:text="${enrollment.midtermGrade}"></p></td>
+            <td style="font-weight: bold" ><p th:text="${enrollment.finalGrade}"></p></td>
+            <td style="font-weight: bold" ><p th:text="${enrollment.totalGrade}"></p></td>
+            <td style="font-weight: bold; cursor: pointer" th:if="${enrollment.totalGrade >= 5.0}">
+                <i class="fa-solid fa-check fa-2x"></i>
+            </td>
+            <td style="font-weight: bold; cursor: pointer" th:unless="${enrollment.totalGrade >= 5.0}">
+                <i class="fa-solid fa-x"></i>
+            </td>
+
+        </tr>
+
+
+
+
+        </tbody>
+        <div>
+            <tfoot>
+            <tr>
+                <td colspan="6" style="font-weight: bold; font-size: 20px">
+                    Total GPA
+                </td>
+                <td style="font-weight: bold" th:text="${totalGpa}"></td>
+                <td style="font-weight: bold"></td>
+
+            </tr>
+            </tfoot>
+        </div>
+    </table>
+</div>
+
+
+
+</body>
+</html>

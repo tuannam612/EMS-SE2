@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html
+        lang="en"
+        xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+        layout:decorate="~{_layout_student}"
+>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link
+          rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+  />
+  <link rel="stylesheet" href="/css/student-view-tuition-style.css" />
+  <link rel="stylesheet" href="/css/header-style.css" />
+  <link rel="stylesheet" href="/css/sidebar.css" />
+  <link rel="icon" href="/images/logo.png" type="image/x-icon">
+  <link
+          href="https://fonts.googleapis.com/css?family=Inter"
+          rel="stylesheet"
+  />
+  <script>
+    let semester = [[${ semesterId }]];
+    function filterRedirect() {
+      let url = "/student/tuition?semester="+semester;
+      window.location.href = url; // redirect
+    }
+    window.addEventListener("load", function () {
+      const semFilter = document.getElementById("semesterSelect");
+      semFilter.value = semester;
+      semFilter.addEventListener("change", function (e) {
+        semester = e.target.value;
+        filterRedirect();
+      });
+    });
+  </script>
+
+  <title>View Tuition</title>
+</head>
+<body class="View_Tuition_Student">
+<div layout:fragment="content" class="container">
+  <h1>View Tuition</h1>
+  <div class="FilterContain">
+    <label for="semesterSelect"></label>
+    <select id="semesterSelect" name="semester" class="filter">
+      <option th:value="0">All tuition fee</option>
+      <option
+              th:each="semester : ${semesters}"
+              th:value="${semester.semesterId}"
+              th:text="'Semester: '+${semester.semesterNum}+', Year: '+${semester.startYear}+' - '+${semester.endYear}"></option>
+    </select>
+  </div>
+
+  <table>
+    <thead>
+    <tr>
+      <th style="width: 1%; height: 20px"></th>
+      <th style="width: 20%; height: 20px">Semester</th>
+      <th style="width: 30%; height: 20px">Tuition Fee</th>
+      <!-- <th style="width: 30%; height: 20px">Owe</th> -->
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="course : ${courses}">
+      <td style="font-weight: bold" ><p th:text="${course.courseId}"></p></td>
+      <td style="font-weight: bold" th:text="'Semester ' + ${course.semester.semesterNum} +
+            ', Year: ' + ${course.semester.startYear} + '-' + ${course.semester.endYear}" ></td>
+      <td style="font-weight: bold" th:text="${course.fee}"></td>
+      <!-- <td style="font-weight: bold; color: red">18.000.000</td> -->
+    </tr>
+
+    </tbody>
+    <div>
+      <tfoot>
+      <tr>
+        <td colspan="2" style="font-weight: bold; font-size: 20px">
+          Total
+        </td>
+        <td style="font-weight: bold" th:text="${totalFee}"></td>
+        <!-- <td style="font-weight: bold; color: red">18.000.000</td> -->
+      </tr>
+      </tfoot>
+    </div>
+  </table>
+</div>
+</body>
+</html>

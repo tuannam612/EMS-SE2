@@ -1,1 +1,1 @@
-DAY LA FRONTEND NHE MOI NGUOI
+This is the final version of EMS. Thanks for reading!
